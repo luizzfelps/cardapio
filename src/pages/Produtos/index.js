@@ -31,9 +31,10 @@ export default function Produtos({ navigation }){
                     onPress={()=>{
                         navigation.navigate("Detalhes",{
                             id: item.id,
-                            name: item.Nome,
-                            description: item.Descricao,
-                            value: item.Valor
+                            nome: item.Nome,
+                            descricao: item.Descricao,
+                            valor: item.Valor,
+                            disponivel: item.Disponivel
                         })
                     }}
                     >

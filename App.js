@@ -7,13 +7,16 @@ import Home from "./src/pages/home"
 import Detalhes from "./src/pages/Detalhes/index"
 import Categorias from "./src/pages/Categorias/index"
 import Produtos from "./src/pages/Produtos/index"
+import Admin from "./src/pages/Admin/index"
+import NewProduct from "./src/pages/Admin/newProduct"
+import EditProduct from "./src/pages/Admin/editProduct"
 
 const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Produtos">
+      <Stack.Navigator initialRouteName="Admin">
         <Stack.Screen
         name="Home"
         component={Home}
@@ -42,7 +45,29 @@ export default function App() {
           headerTintColor:"#f92e6a"
         }}
         />
+        <Stack.Screen
+        name="Admin"
+        component={Admin}
+        options={{
+          headerTintColor:"#f92e6a"
+        }}
+        />
+        <Stack.Screen
+        name="NewProduct"
+        component={NewProduct}
+        options={{
+          headerTintColor:"#f92e6a"
+        }}
+        />
+        <Stack.Screen
+        name="EditProduct"
+        component={EditProduct}
+        options={{
+          headerTintColor:"#f92e6a"
+        }}
+        />
       </Stack.Navigator>
+      
     </NavigationContainer>
   );
 }
