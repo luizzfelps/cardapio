@@ -6,21 +6,26 @@ import database from "../../config/firebaseconfig"
 import styles from "./style"
 import { CardStyleInterpolators } from "@react-navigation/stack"
 
-export default function newProduct({navigation}){
+export default function newProduct({navigation, route}){
+    const [state, setState] = useState({})
     const [nome, setNome] = useState(null)
     const [valor, setValor] = useState(null)
     const [descricao, setDescricao] = useState(null)
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    idCategoriaAdmin = route.params.idCategoriaAdmin
+    nomeCategoriaAdmin = route.params.nomeCategoriaAdmin
+    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
 
-    function adicionarProduto(){
-        database.collection("Produtos").add({
-            Nome: nome,
-            Valor: valor,
-            Descricao: descricao,
-            Disponivel: isEnabled
+    function adicionarProduto(nome, valor, descricao, isEnabled){
+        ref.add({
+            nome: nome,
+            valor: valor,
+            descricao: descricao,
+            disponivel: isEnabled
         })
-        navigation.navigate("Admin")
+        setState({});
+        navigation.navigate("CategoriasAdmin")
     }
 
     return (
@@ -60,7 +65,7 @@ export default function newProduct({navigation}){
             <TouchableOpacity
                 style={styles.buttonNewProduct}
                 onPress={()=>{
-                    adicionarProduto()
+                    adicionarProduto(nome, valor, descricao, isEnabled)
                 }}
             >
                 <Text style={styles.iconButton}>Adicionar</Text>

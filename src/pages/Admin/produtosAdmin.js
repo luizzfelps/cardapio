@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Alert} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
 import styles from "./style"
 
 
-export default function Produtos({ navigation }){
+export default function ProdutosAdmin({ navigation, route }){
+    const [state, setState] = useState({})
     const [produtos, setProdutos] = useState([])
+    idCategoriaAdmin = route.params.id
+    nomeCategoriaAdmin = route.params.nome
+    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
 
     function excluirProduto(id){
-        database.collection("Produtos").doc(id).delete()
+        ref.doc(id).delete()
+        setState({});
     }
+   
     useEffect(() =>{
-        database.collection("Produtos").onSnapshot((query)=>{
+        database.collection('Categorias').doc(idCategoriaAdmin).collection(nomeCategoriaAdmin).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
@@ -23,6 +29,7 @@ export default function Produtos({ navigation }){
     }, [])
     return(
         <View style={styles.container}>
+            <Text>{nomeCategoriaAdmin}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={produtos}
@@ -45,16 +52,18 @@ export default function Produtos({ navigation }){
                     <Text
                     style={styles.ProdutosDescricao}
                     onPress={()=>{
-                        navigation.navigate("EditProduct",{
+                        navigation.navigate("EditarProduto",{
                             id: item.id,
-                            nome: item.Nome,
-                            descricao: item.Descricao,
-                            valor: item.Valor,
-                            disponivel: item.Disponivel
+                            nome: item.nome,
+                            valor: item.valor,
+                            descricao: item.descricao,
+                            disponivel: item.disponivel,
+                            idCategoriaAdmin,
+                            nomeCategoriaAdmin
                         })
                     }}
                     >
-                        {item.Nome}
+                        {item.nome}
                     </Text> 
 
                     </View>
@@ -62,14 +71,13 @@ export default function Produtos({ navigation }){
                 }
                 }
                 />
-            {/* <TouchableOpacity style={styles.buttonDetalhes}
-            onPress={()=> navigation.navigate("Detalhes")}>
-                <Text style={styles.iconButton}>Produto</Text>
-            </TouchableOpacity> */}
             <TouchableOpacity 
                 style={styles.newProduct}
                 onPress={() =>{
-                    navigation.navigate("NewProduct")
+                    navigation.navigate("NovoProduto",{
+                        idCategoriaAdmin,
+                        nomeCategoriaAdmin
+                    })
                 }}
             >
                 <Text style={styles.iconButton}>+</Text>

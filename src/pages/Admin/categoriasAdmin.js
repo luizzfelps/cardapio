@@ -6,37 +6,32 @@ import database from "../../config/firebaseconfig"
 import styles from "./style"
 
 
-export default function Produtos({ navigation,route }){
-    const [produtos, setProdutos] = useState([])
-    idCategoria = route.params.id
-    nomeCategoria = route.params.nome
+export default function CategoriasAdmin({ navigation }){
+    const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        database.collection('Categorias').doc(idCategoria).collection(nomeCategoria).onSnapshot((query)=>{
+        database.collection("Categorias").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
-            setProdutos(list)
+            setCategorias(list)
         })
     }, [])
     return(
         <View style={styles.container}>
-            <Text>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={produtos}
+                data={categorias}
                 renderItem={( { item } )=>{
                     return(
                     <View style={styles.Produtos}>
                     <Text
                     style={styles.ProdutosDescricao}
                     onPress={()=>{
-                        navigation.navigate("Detalhes",{
+                        navigation.navigate("ProdutosAdmin",{
                             id: item.id,
-                            nome: item.nome,
-                            valor: item.valor,
-                            descricao: item.descricao
+                            nome: item.nome
                         })
                     }}
                     >
@@ -48,6 +43,7 @@ export default function Produtos({ navigation,route }){
                 }
                 }
                 />
+
         </View>
     )
 }
