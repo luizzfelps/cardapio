@@ -1,30 +1,59 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch} from "react-native"
-import { FontAwesome } from "@expo/vector-icons"
+import { View, Text, TouchableOpacity, Alert, TextInput, Switch, NavigationContainer } from "react-native"
 
 import database from "../../config/firebaseconfig"
 import styles from "./style"
-import { CardStyleInterpolators } from "@react-navigation/stack"
 
 
 export default function DetalhesEditar({ navigation, route }){
+    const [state, setState] = useState({})
     const [nomeEditar, setNomeEdit] = useState(route.params.nome)
     const [valorEditar, setValorEdit] = useState(route.params.valor)
     const [descricaoEditar, setDescricaoEdit] = useState(route.params.descricao)
     const [isEnabledEditar, setIsEnabledEdit] = useState(route.params.disponivel);
     const toggleSwitch = () => setIsEnabledEdit(previousState => !previousState);
     const idProduto = route.params.id
+    idCategoriaAdmin = route.params.idCategoriaAdmin
+    nomeCategoriaAdmin = route.params.nomeCategoriaAdmin
+    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
 
-    function editarProdutos(Nome, Valor, Descricao, Disponivel, id){
-        database.collection("Produtos").doc(id).update({
-            Nome: nomeEditar,
-            Valor: valorEditar,
-            Descricao: descricaoEditar,
-            Disponivel: isEnabledEditar
+    function editarProdutos(nomeEditar,valorEditar, descricaoEditar, isEnabledEditar, id){
+        ref.doc(id).update({
+            nome: nomeEditar,
+            valor: valorEditar,
+            descricao: descricaoEditar,
+            disponivel: isEnabledEditar
         })
+        setState({});
+        navigation.navigate("ProdutosAdmin",{
+            id: idCategoriaAdmin,
+            nome: nomeCategoriaAdmin
+        })
+        
     }
+    
+    const showAlert = () =>
+        Alert.alert(
+        "Alert Title",
+        "My Alert Msg",
+        [
+            {
+            text: "Cancel",
+            style: "cancel",
+            },
+            {
+                text:"Accept",
+                onPress: () => editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar,idProduto),
+                style: "accept"
+            }
+        ],
+    );
+    
+
+  
     return (
         <View style={styles.container}>
+
             <Text>Nome</Text>
                 <TextInput
                 style={styles.inputText}
@@ -56,9 +85,7 @@ export default function DetalhesEditar({ navigation, route }){
                 />
             <TouchableOpacity
                 style={styles.buttonNewProduct}
-                onPress={()=>{
-                    editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, idProduto)
-                }}
+                 onPress={showAlert}
             >
                 <Text style={styles.iconButton}>Salvar</Text>
             </TouchableOpacity>

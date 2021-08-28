@@ -3,27 +3,31 @@ import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "r
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../config/firebaseconfig"
-import styles from "./style"
+import styles from "./style.js"
 
 export default function Home({ navigation }){
-    const [home, setHome] = useState([])
 
-    useEffect(() =>{
-        database.collection("Produtos").onSnapshot((query)=>{
-            const list = []
-            query.forEach((doc)=>{
-                list.push({...doc.data(), id: doc.id})
-            })
-            setHome(list)
-        })
-    }, [])
     return(
         <View style={styles.container}>
-            <FlatList/>
+            
             <TouchableOpacity>
-                <Text style={styles.iconButton}>+</Text>
+                <Text style={styles.cardapio}
+                onPress={()=>{
+                        navigation.navigate("Categorias")
+                    }}
+                >
+                    Cardapio</Text>
             </TouchableOpacity>
-
+            <View style={styles.container2}>
+            <TouchableOpacity>
+                <Text style={styles.cardapio}
+                onPress={()=>{
+                        navigation.navigate("CategoriasAdmin")
+                    }}
+                >
+                    Admin</Text>
+            </TouchableOpacity>
+            </View>
 
         </View>
     )

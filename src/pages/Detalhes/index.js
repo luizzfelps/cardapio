@@ -13,9 +13,9 @@ export default function Detalhes({navigation, route}){
     const valor = useState(route.params.valor)
     return(
        <View style={styles.container}>
-           <Text></Text>
-           <Text> </Text>
-           <Text></Text>
+           <Text>{nome}</Text>
+           <Text>{valor}</Text>
+           <Text>{descricao}</Text>
        </View>
     )
 }
