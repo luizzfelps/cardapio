@@ -10,9 +10,10 @@ export default function Produtos({ navigation,route }){
     const [produtos, setProdutos] = useState([])
     idCategoria = route.params.id
     nomeCategoria = route.params.nome
-
+    const ref = database.collection('Categorias').doc(idCategoria).collection(nomeCategoria)
+    
     useEffect(() =>{
-        database.collection('Categorias').doc(idCategoria).collection(nomeCategoria).onSnapshot((query)=>{
+        ref.where("disponivel", "==", true).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
@@ -20,6 +21,7 @@ export default function Produtos({ navigation,route }){
             setProdutos(list)
         })
     }, [])
+
     return(
         <View style={styles.container}>
             <Text>{nomeCategoria}</Text>
