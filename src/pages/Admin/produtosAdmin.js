@@ -52,7 +52,7 @@ export default function ProdutosAdmin({ navigation, route }){
                     <Text
                     style={styles.ProdutosDescricao}
                     onPress={()=>{
-                        navigation.navigate("EditarProduto",{
+                        navigation.navigate("DetalhesEditar",{
                             id: item.id,
                             nome: item.nome,
                             valor: item.valor,

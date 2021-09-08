@@ -4,7 +4,7 @@ import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
 import styles from "../style"
-
+import {useCart} from '../../context/cart'
 
 export default function Categorias({ navigation }){
     const [categorias, setCategorias] = useState([])
@@ -47,3 +47,12 @@ export default function Categorias({ navigation }){
     </View>
 )
 }
+function IconWithBadge(){
+    const {cart} = useCart()
+
+    return(
+      <View style={{width:24, height:24, margin:5, alignItems: 'center', justifyContent:'center'}}>
+        <Text>{Object.keys(cart).length}</Text>
+      </View>
+    )
+  }

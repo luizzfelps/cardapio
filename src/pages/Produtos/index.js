@@ -11,12 +11,12 @@ export default function Produtos({ navigation,route }){
     idCategoria = route.params.id
     nomeCategoria = route.params.nome
     const ref = database.collection('Categorias').doc(idCategoria).collection(nomeCategoria)
-    
+
     useEffect(() =>{
         ref.where("disponivel", "==", true).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
-                list.push({...doc.data(), id: doc.id})
+                list.push({...doc.data(), id: doc.id}) 
             })
             setProdutos(list)
         })
@@ -38,7 +38,8 @@ export default function Produtos({ navigation,route }){
                             id: item.id,
                             nome: item.nome,
                             valor: item.valor,
-                            descricao: item.descricao
+                            descricao: item.descricao,
+                            produtoBruto: item
                         })
                     }}
                     >

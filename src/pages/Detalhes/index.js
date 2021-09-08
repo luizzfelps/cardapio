@@ -1,21 +1,27 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "react-native"
-import { FontAwesome } from "@expo/vector-icons"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Button} from "react-native"
 
-import database from "../../config/firebaseconfig"
 import styles from "./style"
-import { State } from "react-native-gesture-handler"
+import {useCart} from '../../context/cart'
+
 
 export default function Detalhes({navigation, route}){
-    const id = useState(route.params.id)
-    const nome = useState(route.params.nome)
-    const descricao = useState(route.params.descricao)
-    const valor = useState(route.params.valor)
+    const {add} = useCart()
+    const [id, setId] = useState(route.params.id)
+    const [nome, setNome] = useState(route.params.nome)
+    const [descricao, setDescricao] = useState(route.params.descricao)
+    const [valor, setValor] = useState(route.params.valor)
+    const [produto, setProduto] = useState(route.params.produtoBruto)
+
     return(
-       <View style={styles.container}>
+       <View style={styles.container}> 
            <Text>{nome}</Text>
-           <Text>{valor}</Text>
            <Text>{descricao}</Text>
+           <Text>{valor}</Text>
+           <Button 
+                title="Adicionar ao Carrinho"
+                onPress={() => add(produto)}>
+           </Button>
        </View>
     )
 }

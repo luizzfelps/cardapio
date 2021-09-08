@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         alignContent:"flex-start",
         justifyContent:"center",
 
-    }, Produtos:{
+    },
+    Produtos:{
         width:"100%",
         flexDirection:"row",
         justifyContent:"space-between",
@@ -48,6 +49,14 @@ const styles = StyleSheet.create({
     iconButton:{
         color:"#ffffff",
         fontSize:20
-    }, 
+    },
+    excluirProduto:{
+        justifyContent:"center",
+        paddingLeft:15
+    },
+    addProduto:{
+        justifyContent:"center",
+        paddingLeft:15
+    }
 });
 export default styles;
