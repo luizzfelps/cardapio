@@ -11,6 +11,8 @@ import CategoriasAdmin from "../pages/Admin/categoriasAdmin"
 import DetalhesEditar from "../pages/Admin/editProduct"
 import NovoProduto from "../pages/Admin/newProduct"
 import ProdutosAdmin from "../pages/Admin/produtosAdmin"
+import Buscar from "../pages/buscar"
+
 
 const Stack = createStackNavigator();
 
@@ -48,3 +50,15 @@ export {HomeBar}
     )
   }
 export {CartBar}
+
+  function BuscarBar(){
+    return(
+      <Stack.Navigator>
+  
+       <Stack.Screen name="Search" component={Buscar} />
+  
+      </Stack.Navigator>
+    )
+  }
+
+  export {BuscarBar}

@@ -57,6 +57,16 @@ const styles = StyleSheet.create({
     addProduto:{
         justifyContent:"center",
         paddingLeft:15
-    }
+    },
+    input: {
+        width: '100%',
+        borderColor: '#000',
+        borderWidth: 1,
+        borderRadius: 8,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        marginBottom: 10
+      },
+
 });
 export default styles;
