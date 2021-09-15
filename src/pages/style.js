@@ -4,17 +4,55 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        paddingTop: 20
-    },container2:{
-        paddingTop: 20
+        
+    },
+    img:{
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        width: "100%",
+        height: "100%"
+    },
+    btnAdm:{
+        paddingTop: 8,
+        paddingRight:8,
+        
+        alignContent: 'flex-end',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
+        borderRadius: 50
+    },
+    btnCardapio:{
+        flex:1,
+        paddingBottom: 100,
+        justifyContent: 'flex-end',
+        alignContent: 'flex-end',
+        alignItems: 'center'
+        
+    },
+    
+    adm:{
+        backgroundColor: "#fff",
+        borderRadius: 50,
+        color: "#f00",
+        width: 50,
+        height: 40,
+        textAlign: 'center'
+       
+
     },
     cardapio:{
-        backgroundColor:"#778899",
-        width: 60,
-        borderRadius:20,
-        alignContent:"flex-start",
+        backgroundColor:"#FA6800",
+        width: 100,
+        height: 50,
+        borderRadius: 50,
         justifyContent:"center",
-
+        alignItems: 'center',
+        color: 'white',
+        textAlign: 'center',
+        fontSize: 25
     },
     Produtos:{
         width:"100%",

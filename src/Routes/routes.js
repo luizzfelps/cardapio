@@ -17,7 +17,7 @@ const Stack = createStackNavigator();
 function HomeBar(){
     return(
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home}/>
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
 
         <Stack.Screen name="CategoriasAdmin" component={CategoriasAdmin}/>
 
