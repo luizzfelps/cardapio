@@ -51,14 +51,14 @@ export {HomeBar}
   }
 export {CartBar}
 
-  function BuscarBar(){
-    return(
-      <Stack.Navigator>
+  // function BuscarBar(){
+  //   return(
+  //     <Stack.Navigator>
   
-       <Stack.Screen name="Search" component={Buscar} />
+  //      <Stack.Screen name="Search" component={Buscar} />
   
-      </Stack.Navigator>
-    )
-  }
+  //     </Stack.Navigator>
+  //   )
+  // }
 
-  export {BuscarBar}
+  // export {BuscarBar}
