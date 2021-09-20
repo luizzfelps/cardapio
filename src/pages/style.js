@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
         paddingBottom: 100,
         justifyContent: 'flex-end',
         alignContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
+        
         
     },
     
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: 'white',
         textAlign: 'center',
-        fontSize: 25
+        fontSize: 25,
     },
     Produtos:{
         width:"100%",
