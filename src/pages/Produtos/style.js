@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
         paddingTop: 20
     },
     Produtos:{
-        width:"100%",
+        flex: 1,
+        width:'100%',
         flexDirection:"row",
         justifyContent:"space-between",
         marginTop:5
@@ -15,15 +16,17 @@ const styles = StyleSheet.create({
 
     },
     ProdutosDescricao:{
-        width:"75%",
-        alignContent:"flex-start",
+        width:"100%",
+        margin: 5,
+        alignContent:"center",
+        alignItems: 'center',
         justifyContent:"center",
-        backgroundColor:"#f5f5f5cf",
+        backgroundColor:"#A0522D",
         padding:12,
-        paddingHorizontal:20,
+        paddingHorizontal:10,
         borderRadius: 50,
         marginBottom:5,
-        marginRight:15,
+        marginRight:20,
         color:"#282b2db5"
         
     },

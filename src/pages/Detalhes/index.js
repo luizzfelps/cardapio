@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Button} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Button, Alert} from "react-native"
 
 import styles from "./style"
 import {useCart} from '../../context/cart'
@@ -15,13 +15,16 @@ export default function Detalhes({navigation, route}){
 
     return(
        <View style={styles.container}> 
+        <View style={styles.details}>
            <Text>{nome}</Text>
            <Text>{descricao}</Text>
-           <Text>{valor}</Text>
+           <Text>R$ {valor}</Text>
+        </View>
            <Button 
                 title="Adicionar ao Carrinho"
                 onPress={() => add(produto)}>
            </Button>
+           
        </View>
     )
 }
