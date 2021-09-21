@@ -14,6 +14,16 @@ const styles = StyleSheet.create({
 
 
     },
+    details:{
+        backgroundColor: "#ccc",
+        height: 100,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: 5,
+        marginBottom: 5
+    },
+
     ProdutosDescricao:{
         width:"75%",
         alignContent:"flex-start",

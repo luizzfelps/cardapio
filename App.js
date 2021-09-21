@@ -15,7 +15,7 @@ export default function App() {
     <CartProvider>
       <NavigationContainer>
         <Tab.Navigator >
-          <Tab.Screen name="Inicial" component={HomeBar} options={{ headerShown: false }} />
+          <Tab.Screen  name="Inicial" component={HomeBar} options={{ headerShown: false }} />
 
           <Tab.Screen name="Buscar" component={BuscarBar} options={{ headerShown: false }} />
 
