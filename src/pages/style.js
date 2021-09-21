@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
         paddingLeft:15
     },
     input: {
-        width: '100%',
+        display: 'flex',
+        width: '80%',
         borderColor: '#000',
         borderWidth: 1,
         borderRadius: 8,
@@ -113,6 +114,16 @@ const styles = StyleSheet.create({
         fontSize: 18,
         height: 44,
       },  
+
+      buscar: {
+        display: 'flex',
+        textAlign: "center",
+        width: '25%',
+        height: '25%',
+        backgroundColor: "#2196F3",
+        alignContent: "center",
+        alignItems: 'flex-start',
+      },
 
 });
 export default styles;
