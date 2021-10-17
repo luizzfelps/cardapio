@@ -11,18 +11,20 @@ export default function newProduct({navigation, route}){
     const [nome, setNome] = useState(null)
     const [valor, setValor] = useState(null)
     const [descricao, setDescricao] = useState(null)
+    const [categoria, setCategoria] = useState(null)
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     idCategoriaAdmin = route.params.idCategoriaAdmin
-    nomeCategoriaAdmin = route.params.nomeCategoriaAdmin
-    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
+    nomeCategoria = route.params.nomeCategoria
+    const ref = database.collection("Produtos")
 
-    function adicionarProduto(nome, valor, descricao, isEnabled){
+    function adicionarProduto(nome, valor, descricao, isEnabled, categoria){
         ref.add({
             nome: nome,
             valor: valor,
             descricao: descricao,
-            disponivel: isEnabled
+            disponivel: isEnabled,
+            categoria: categoria
         })
         setState({});
         navigation.navigate("CategoriasAdmin")
@@ -54,6 +56,14 @@ export default function newProduct({navigation, route}){
                 value={valor}
             >
             </TextInput>
+            <Text>Categoria</Text>
+                <TextInput
+                style={styles.inputText}
+                placeholder="Ex: Bebidas"
+                onChangeText={setCategoria}
+                value={categoria}
+            >
+            </TextInput>
             <Text>Disponível</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -65,7 +75,7 @@ export default function newProduct({navigation, route}){
             <TouchableOpacity
                 style={styles.buttonNewProduct}
                 onPress={()=>{
-                    adicionarProduto(nome, valor, descricao, isEnabled)
+                    adicionarProduto(nome, valor, descricao, isEnabled, categoria)
                 }}
             >
                 <Text style={styles.iconButton}>Adicionar</Text>

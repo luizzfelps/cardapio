@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react"
+import { SearchBar } from 'react-native-elements';
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput} from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
-import database from "../config/firebaseconfig"
 import styles from "./style.js"
 import CartProvider from "../context/cart"
 import Carrinho from "./carrinho"
 import Categorias from "./Categorias/index"
+import database from "../config/firebaseconfig"
 
 
 export default function Buscar({navigation}){
@@ -65,4 +66,5 @@ export default function Buscar({navigation}){
 
     
 }
+
 

@@ -11,6 +11,18 @@ export default function Detalhes({navigation, route}){
     const {add, remove, cart, totalValue} = useCart()
     const itemsPrice = cart.reduce((a, c) => a + c.valor * c.qty, 0);
     const totalPrice = itemsPrice
+    // const ref = database.collection("Pedidos")
+    // const [pedido, setPedido] = useState({})
+    // function adicionarPedido(cpf, mesa, pago, produtos){
+    //     ref.doc(id).update({
+    //         nome: nomeEditar,
+    //         valor: valorEditar,
+    //         descricao: descricaoEditar,
+    //         disponivel: isEnabledEditar
+    //     })
+    // }
+
+
     return(
         <View style={styles.centeredView}>
             <FlatList
@@ -54,7 +66,7 @@ export default function Detalhes({navigation, route}){
                                 <Text style={styles.modalText}>Revisando seu pedido!</Text>
                                 <FlatList
                                     data={cart}
-                                    renderItem={({item}) => <Text style={styles.item}>{item.nome}, {item.qty}</Text>}
+                                    renderItem={({item}) => <Text>{item.nome}, {item.qty}</Text>}
                                   />
                                 <Pressable
                                 style={[styles.button, styles.buttonClose]}

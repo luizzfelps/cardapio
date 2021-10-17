@@ -10,24 +10,26 @@ export default function DetalhesEditar({ navigation, route }){
     const [nomeEditar, setNomeEdit] = useState(route.params.nome)
     const [valorEditar, setValorEdit] = useState(route.params.valor)
     const [descricaoEditar, setDescricaoEdit] = useState(route.params.descricao)
+    const [categoriaEditar, setCategoriaEditar] = useState (route.params.categoria)
     const [isEnabledEditar, setIsEnabledEdit] = useState(route.params.disponivel);
     const toggleSwitch = () => setIsEnabledEdit(previousState => !previousState);
     const idProduto = route.params.id
     idCategoriaAdmin = route.params.idCategoriaAdmin
-    nomeCategoriaAdmin = route.params.nomeCategoriaAdmin
-    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
+    nomeCategoria = route.params.nomeCategoria
+    const ref = database.collection("Produtos")
 
-    function editarProdutos(nomeEditar,valorEditar, descricaoEditar, isEnabledEditar, id){
+    function editarProdutos(nomeEditar,valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar, id){
         ref.doc(id).update({
             nome: nomeEditar,
             valor: valorEditar,
             descricao: descricaoEditar,
-            disponivel: isEnabledEditar
+            disponivel: isEnabledEditar,
+            categoria: categoriaEditar
         })
         setState({});
         navigation.navigate("ProdutosAdmin",{
             id: idCategoriaAdmin,
-            nome: nomeCategoriaAdmin
+            nome: nomeCategoria
         })
         
     }
@@ -43,7 +45,7 @@ export default function DetalhesEditar({ navigation, route }){
             },
             {
                 text:"Accept",
-                onPress: () => editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar,idProduto),
+                onPress: () => editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar,idProduto),
                 style: "accept"
             }
         ],
@@ -73,6 +75,13 @@ export default function DetalhesEditar({ navigation, route }){
                 style={styles.inputText}
                 onChangeText={setValorEdit}
                 value={valorEditar}
+            >
+            </TextInput>
+            <Text>Valor</Text>
+                <TextInput
+                style={styles.inputText}
+                onChangeText={setCategoriaEditar}
+                value={categoriaEditar}
             >
             </TextInput>
             <Text>Disponível</Text>

@@ -10,7 +10,7 @@ export default function Categorias({ navigation }){
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        database.collection("Categorias").onSnapshot((query)=>{
+        database.collection("Categorias2").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
@@ -31,7 +31,6 @@ export default function Categorias({ navigation }){
                 style={styles.ProdutosDescricao}
                 onPress={()=>{
                     navigation.navigate("Produtos",{
-                        id: item.id,
                         nome: item.nome
                     })
                 }}

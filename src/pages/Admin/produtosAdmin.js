@@ -10,8 +10,8 @@ export default function ProdutosAdmin({ navigation, route }){
     const [state, setState] = useState({})
     const [produtos, setProdutos] = useState([])
     idCategoriaAdmin = route.params.id
-    nomeCategoriaAdmin = route.params.nome
-    const ref = database.collection("Categorias").doc(idCategoriaAdmin).collection(nomeCategoriaAdmin)
+    nomeCategoria = route.params.nome
+    const ref = database.collection("Produtos")
 
     function excluirProduto(id){
         ref.doc(id).delete()
@@ -19,17 +19,18 @@ export default function ProdutosAdmin({ navigation, route }){
     }
    
     useEffect(() =>{
-        database.collection('Categorias').doc(idCategoriaAdmin).collection(nomeCategoriaAdmin).onSnapshot((query)=>{
+        nomeCategoria = route.params.nome
+        ref.where("categoria", "==", nomeCategoria).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
-                list.push({...doc.data(), id: doc.id})
+                list.push({...doc.data(), id: doc.id}) 
             })
             setProdutos(list)
         })
     }, [])
     return(
         <View style={styles.container}>
-            <Text>{nomeCategoriaAdmin}</Text>
+            <Text>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={produtos}
@@ -58,8 +59,9 @@ export default function ProdutosAdmin({ navigation, route }){
                             valor: item.valor,
                             descricao: item.descricao,
                             disponivel: item.disponivel,
+                            categoria: categoria,
                             idCategoriaAdmin,
-                            nomeCategoriaAdmin
+                            nomeCategoria
                         })
                     }}
                     >
@@ -76,7 +78,7 @@ export default function ProdutosAdmin({ navigation, route }){
                 onPress={() =>{
                     navigation.navigate("NovoProduto",{
                         idCategoriaAdmin,
-                        nomeCategoriaAdmin
+                        nomeCategoria
                     })
                 }}
             >
