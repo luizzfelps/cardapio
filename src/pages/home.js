@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity} from "react-native"
 import {Input} from "react-native-elements"
 import { NavigationContainer } from "@react-navigation/native"
-import { FontAwesome } from "@expo/vector-icons"
 import database from "../config/firebaseconfig"
 import styles from "./style.js"
 import CartProvider from "../context/cart"
@@ -64,8 +63,8 @@ export default function Home({ navigation }){
         
     
     return(
-            <View style={styles.container}>
-                <Text style={{color: 'red', marginLeft:20}}>{error}</Text>
+            <View style={styles.containerHome}>
+                {/* <Text style={{color: 'red', marginLeft:20}}>{error}</Text>
                 {isVisible === false ? 
                 <>
                 <Text>Bem vindo, por favor insira o número de seu CPF e mesa</Text>
@@ -104,18 +103,23 @@ export default function Home({ navigation }){
                     </>
                 : null}
                 { isVisible ?
-                <>
+                <> */}
                 <TouchableOpacity
-                style={styles.button}
+                style={styles.buttonsHome}
                     onPress={() => {navigation.navigate("Categorias")}}>
-                     <Text style={styles.cardapio}>Cardapio</Text>
+                     <Text style={styles.textHome}>Cardapio</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    style={styles.button}
+                    style={styles.buttonsHome}
                     onPress={() => {navigation.navigate("CategoriasAdmin")}}>
-                    <Text style={styles.cardapio}>Admin</Text>
-                </TouchableOpacity></>
-                 : null }
+                        <FontAwesome
+                        name="user"
+                        size={23}
+                        color="#4682B4">
+                        </FontAwesome>
+                </TouchableOpacity>
+                {/* </>
+                 : null } */}
             </View>
 
     )

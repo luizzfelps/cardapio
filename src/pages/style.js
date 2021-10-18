@@ -1,31 +1,39 @@
 import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
+    containerHome: {
+      flex: 1,
+      backgroundColor: "#fff",
+      alignItems: 'center',
+      justifyContent: 'center'
+  },
+  buttonsHome: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: '#FAF0E6',
+  },
+  textHome: {
+    fontSize: 20
+  },
     container: {
         flex: 1,
         backgroundColor: "#fff",
-        paddingTop: 20,
+        paddingTop: 10,
     },
     Produtos:{
-        width:"100%",
-        flexDirection:"row",
-        justifyContent:"space-between",
-        marginTop:5
-
-
+        marginTop:5,
+        alignItems: 'center',
+        alignContent: 'center',
     },
     ProdutosDescricao:{
-        width:"75%",
-        alignContent:"flex-start",
+        width:"50%",
         justifyContent:"center",
         backgroundColor:"#f5f5f5cf",
         padding:12,
-        paddingHorizontal:20,
         borderRadius: 50,
-        marginBottom:5,
-        marginRight:15,
-        color:"#282b2db5"
-        
+        color:"#282b2db5",
+        textAlign: 'center'        
     },
     buttonDetalhes:{
         position:"absolute",

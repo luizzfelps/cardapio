@@ -38,7 +38,9 @@ export default function Produtos({ navigation,route }){
                             nome: item.nome,
                             valor: item.valor,
                             descricao: item.descricao,
+                            imagem: item.imagem,
                             produtoBruto: item
+                            
                         })
                     }}
                     >
