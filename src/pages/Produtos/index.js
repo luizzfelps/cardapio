@@ -46,7 +46,6 @@ export default function Produtos({ navigation,route }){
                     >
                         {item.nome}
                     </Text> 
-
                     </View>
                     )
                 }
