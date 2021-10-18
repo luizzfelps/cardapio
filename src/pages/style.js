@@ -5,16 +5,19 @@ const styles = StyleSheet.create({
       flex: 1,
       backgroundColor: "#fff",
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'space-evenly',
   },
   buttonsHome: {
+    margin: 5,
     borderRadius: 20,
     padding: 10,
     elevation: 2,
     backgroundColor: '#FAF0E6',
   },
   textHome: {
-    fontSize: 20
+    fontSize: 20,
+    color: '#4682B4',
+    fontWeight: 'bold'
   },
     container: {
         flex: 1,
@@ -46,13 +49,13 @@ const styles = StyleSheet.create({
         height: "100%"
     },
     btnAdm:{
-      
         paddingTop: 8,
         paddingRight:8,
         alignContent: 'flex-end',
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
-        borderRadius: 50
+        borderRadius: 50,
+        backgroundColor: "#FAF0E6"
     },
   
     btnCardapio:{
@@ -61,6 +64,11 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignContent: 'flex-end',
         alignItems: 'center',
+        borderRadius: 20,
+        padding: 10,
+        elevation: 2,
+        backgroundColor: '#FAF0E6',
+        
         
         
     },

@@ -42,14 +42,17 @@ export default function Produtos({ navigation,route }){
                             produtoBruto: item
                             
                         })
-                        
-                        
-                        
+
                     }}
                         >
-                    <Text>{item.nome}</Text>
+                    <View style={styles.prod}>
+                    <Text style={styles.texto}>{item.nome}</Text>
+                    <Text></Text>
+                    <Text></Text>
+                    <Text style={styles.texto}>R$ {item.valor}</Text>
+                    </View>
                     <Image
-                        style={{ width: 50, height: 50,}}
+                        style={{ width: 85, height: 85, borderRadius: 5, margin: 5}}
                         source={{
                              uri: item.imagem,
                             }}

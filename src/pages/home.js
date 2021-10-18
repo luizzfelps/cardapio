@@ -66,12 +66,7 @@ export default function Home({ navigation }){
             <View style={styles.containerHome}>
                  <StatusBar backgroundColor = "#333" barStyle="default" />
                     <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
-                <TouchableOpacity
-                style={styles.buttonsHome}
-                    onPress={() => {navigation.navigate("Categorias")}}>
-                     <Text style={styles.textHome}>Cardapio</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
+                    <TouchableOpacity
                     style={styles.buttonsHome}
                     onPress={() => {navigation.navigate("CategoriasAdmin")}}>
                         <FontAwesome
@@ -80,6 +75,19 @@ export default function Home({ navigation }){
                         color="#4682B4">
                         </FontAwesome>
                 </TouchableOpacity>
+                <TouchableOpacity
+                style={styles.btnCardapio}
+                    onPress={() => {navigation.navigate("Categorias")}}>
+                    <Text style={styles.textHome}>Acessar o Cardapio  <Text></Text>
+                        <FontAwesome 
+                        name="list"
+                        size={23}
+                        color="#4682B4"
+                        />
+                    </Text>
+                     
+                </TouchableOpacity>
+                
                
             </View>
              )
