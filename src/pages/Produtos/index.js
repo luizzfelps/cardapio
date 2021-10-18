@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
@@ -23,29 +23,39 @@ export default function Produtos({ navigation,route }){
 
     return(
         <View style={styles.container}>
-            <Text>{nomeCategoria}</Text>
+            <Text style={styles.title}>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={produtos}
                 renderItem={( { item } )=>{
                     return(
                     <View style={styles.Produtos}>
-                    <Text
-                    style={styles.ProdutosDescricao}
+                    <TouchableOpacity style={styles.ProdutosDescricao}
                     onPress={()=>{
                         navigation.navigate("Detalhes",{
                             id: item.id,
                             nome: item.nome,
+                            imagem:item.imagem,
                             valor: item.valor,
                             descricao: item.descricao,
                             imagem: item.imagem,
                             produtoBruto: item
                             
                         })
+                        
+                        
+                        
                     }}
-                    >
-                        {item.nome}
-                    </Text> 
+                        >
+                    <Text>{item.nome}</Text>
+                    <Image
+                        style={{ width: 50, height: 50,}}
+                        source={{
+                             uri: item.imagem,
+                            }}
+                    />
+                    </TouchableOpacity>
+                    
                     </View>
                     )
                 }

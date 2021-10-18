@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, Image, StatusBar} from "react-native"
 import {Input} from "react-native-elements"
 import { NavigationContainer } from "@react-navigation/native"
 import database from "../config/firebaseconfig"
@@ -19,7 +19,7 @@ export default function Home({ navigation }){
     const [errorMesa, setErrorMesa] = useState(null)
     const [error, setError] = useState(true)
 
-    function validarCPF()
+   /* function validarCPF()
     {
         setError(null)
 
@@ -61,49 +61,11 @@ export default function Home({ navigation }){
         }
     }
         
-    
+    */
     return(
             <View style={styles.containerHome}>
-                {/* <Text style={{color: 'red', marginLeft:20}}>{error}</Text>
-                {isVisible === false ? 
-                <>
-                <Text>Bem vindo, por favor insira o número de seu CPF e mesa</Text>
-                <Text>CPF somente números</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setCpf}
-                    placeholder={'123.456.789.09'}
-                    value={cpf}
-                    keyboardType="numeric"
-                    onBlur={() => {validarCPF()}}
-
-                />
-                 <Text>Mesa</Text>
-                 <TextInput
-                    style={styles.input}
-                    onChangeText={setMesa}
-                    placeholder={'1'}
-                    value={mesa}
-                    keyboardType="numeric"
-                    onBlur={() => {validarMesa()}}
-                    />
-                    <TouchableOpacity
-                        disabled = {errorCPF === false && errorMesa === false ? false : true}
-                        style={styles.excluirProduto}
-                        onPress={()=>{
-                            setError(null)
-                            setIsVisible(true)}}>
-                        <FontAwesome
-                            name="check-circle"
-                            size={43}
-                            color="#F92E6A"
-                        >
-                        </FontAwesome>
-                    </TouchableOpacity>
-                    </>
-                : null}
-                { isVisible ?
-                <> */}
+                 <StatusBar backgroundColor = "#333" barStyle="default" />
+                    <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
                 <TouchableOpacity
                 style={styles.buttonsHome}
                     onPress={() => {navigation.navigate("Categorias")}}>
@@ -118,9 +80,44 @@ export default function Home({ navigation }){
                         color="#4682B4">
                         </FontAwesome>
                 </TouchableOpacity>
-                {/* </>
-                 : null } */}
+               
             </View>
+             )
+            }
+  /*  return(
+        <SafeAreaView style={{flex: 1, backgroundColor: '#333'}}>
+           
+        <View style={styles.container}>
+        <StatusBar backgroundColor = "#333" barStyle="default" />
+            <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
 
-    )
-}
+            <TouchableOpacity style={styles.btnAdm}
+            onPress={()=>{
+                navigation.navigate("CategoriasAdmin")
+            }}>
+                
+                <FontAwesome 
+                name="user"
+                size={40}
+                color="#fff"
+                />
+                
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.btnCardapio} 
+            onPress={()=>{
+                navigation.navigate("Categorias")
+                activeOpacity= 0.7
+            }}
+            >
+            <FontAwesome 
+                name="list"
+                size={50}
+                color="#fff"
+            />
+                
+               
+            </TouchableOpacity>*/
+           
+
+   

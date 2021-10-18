@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#34465D",
         paddingTop: 20
     },
     Produtos:{
@@ -16,8 +16,7 @@ const styles = StyleSheet.create({
     },
     details:{
         backgroundColor: "#ccc",
-        height: 100,
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
         padding: 5,

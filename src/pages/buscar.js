@@ -7,6 +7,7 @@ import CartProvider from "../context/cart"
 import Carrinho from "./carrinho"
 import Categorias from "./Categorias/index"
 import database from "../config/firebaseconfig"
+import { FontAwesome } from "@expo/vector-icons"
 
 
 export default function Buscar({navigation}){
@@ -25,13 +26,15 @@ export default function Buscar({navigation}){
 
     return (
         <View style={styles.container}>
-
-            <TextInput style={styles.input} value={buscaItem} onChangeText={text=>setBuscaItem(text)}/>
-            <TouchableOpacity>
-                <Text style={styles.buscar}>
+           
+            <TextInput placeholder ="O que está procurando ?"
+            style={styles.textInput}
+             value={buscaItem} onChangeText={text=>setBuscaItem(text)}/>
+ 
+            <TouchableOpacity style={styles.buscar}>
+                <Text >
                     Buscar</Text>
             </TouchableOpacity>
-
 
                 <FlatList
                     showsVerticalScrollIndicator={false}
@@ -56,6 +59,7 @@ export default function Buscar({navigation}){
                     }
                     }
                     />
+                    
             </View>
         )
 

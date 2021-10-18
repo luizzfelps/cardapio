@@ -1,7 +1,8 @@
 import React from 'react';
-import { createStackNavigator } from "@react-navigation/stack"
+import { createStackNavigator } from "@react-navigation/stack";
+import {TouchableOpacity} from "react-native";
 
-
+import { FontAwesome } from "@expo/vector-icons"
 import Home from "../pages/home"
 import Carrinho from "../pages/carrinho"
 import Categorias from "../pages/Categorias/index"
@@ -14,12 +15,27 @@ import ProdutosAdmin from "../pages/Admin/produtosAdmin"
 import Buscar from "../pages/buscar"
 
 
+
 const Stack = createStackNavigator();
 
-function HomeBar(){
+function HomeBar(navigation){
     return(
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
+        <Stack.Screen name="Home" component={Home} 
+        options={{ 
+          headerShown: false
+         /* title: 'Vinland Bar Cardapio',
+          headerRight: () => (
+            <TouchableOpacity style={{marginRight: 15}}
+            onPress={()=>{
+              navigation.navigate("CategoriasAdmin")
+          }}
+            >
+              <FontAwesome name="user" size={40} color="#000"/>
+            </TouchableOpacity>
+          )
+        */
+          }} />
 
         <Stack.Screen name="CategoriasAdmin" component={CategoriasAdmin}/>
 

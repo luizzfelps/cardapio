@@ -3,8 +3,13 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: "#34465D",
         paddingTop: 20
+    },
+    title:{
+        margin: 5,
+        fontSize: 25,
+        color: '#fff'
     },
     Produtos:{
         flex: 1,
@@ -20,8 +25,8 @@ const styles = StyleSheet.create({
         margin: 5,
         alignContent:"center",
         alignItems: 'center',
-        justifyContent:"center",
-        backgroundColor:"#A0522D",
+        justifyContent:"space-between",
+        backgroundColor:"#fff",
         padding:12,
         paddingHorizontal:10,
         borderRadius: 50,

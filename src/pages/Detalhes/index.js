@@ -5,6 +5,7 @@ import styles from "./style"
 import {useCart} from '../../context/cart'
 
 
+
 export default function Detalhes({navigation, route}){
     const {add} = useCart()
     const [id, setId] = useState(route.params.id)
@@ -16,16 +17,18 @@ export default function Detalhes({navigation, route}){
 
     return(
        <View style={styles.container}> 
+       
         <View style={styles.details}>
-           <Text>{nome}</Text>
-           <Text>{descricao}</Text>
-           <Text>R$ {valor}</Text>
-           <Image
-            style={{ width: 50, height: 50,}}
+        <Image
+            style={{ width: 150, height: 150, borderRadius: 8}}
             source={{
                uri: imagem,
             }}
            />
+           <Text>{nome}</Text>
+           <Text>{descricao}</Text>
+           <Text>R$ {valor}</Text>
+           
         </View>
            <Button 
                 title="Adicionar ao Carrinho"

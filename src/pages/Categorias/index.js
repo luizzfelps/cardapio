@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
-import styles from "../style"
+import styles from "./style"
 import {useCart} from '../../context/cart'
 
 export default function Categorias({ navigation }){
@@ -21,15 +21,18 @@ export default function Categorias({ navigation }){
     
     return(
         <View style={styles.container}>
-        <FlatList
+           
+
+            <Text style={styles.title}> Escolha a Categoria</Text>
+            <FlatList style={styles.lista}
             showsVerticalScrollIndicator={false}
             data={categorias}
             renderItem={( { item } )=>{
                 return(
                 <View style={styles.Produtos}>
                 <Text
-                style={styles.ProdutosDescricao}
-                onPress={()=>{
+                    style={styles.ProdutosDescricao}
+                    onPress={()=>{
                     navigation.navigate("Produtos",{
                         nome: item.nome
                     })
@@ -43,6 +46,7 @@ export default function Categorias({ navigation }){
             }
             }
             />
+             
     </View>
 )
 }
