@@ -63,7 +63,10 @@ export default function Detalhes({navigation, route}){
                         >
                             <View style={styles.centeredView}>
                             <View style={styles.modalView}>
-                                <Text style={styles.modalText}>Revisando seu pedido!</Text>
+                                <Text style={styles.modalText}>
+                                    Revisando seu pedido! <br/>
+                                    O pedido será enviado para cozinha e ficará marcado na sua comanda, obrigado.
+                                </Text>
                                 <FlatList
                                     data={cart}
                                     renderItem={({item}) => <Text>{item.nome}, {item.qty}</Text>}

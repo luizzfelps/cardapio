@@ -29,7 +29,6 @@ export default function newProduct({navigation, route}){
 
         return () => {
             setState({});
-            navigation.navigate("CategoriasAdmin")
           };
     }
 

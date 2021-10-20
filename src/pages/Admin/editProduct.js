@@ -26,12 +26,10 @@ export default function DetalhesEditar({ navigation, route }){
             disponivel: isEnabledEditar,
             categoria: categoriaEditar
         })
-        setState({});
-        navigation.navigate("ProdutosAdmin",{
-            id: idCategoriaAdmin,
-            nome: nomeCategoria
-        })
-        
+        return () => {
+            setState({});
+          };
+
     }
     
     const showAlert = () =>
@@ -45,7 +43,10 @@ export default function DetalhesEditar({ navigation, route }){
             },
             {
                 text:"Aceitar",
-                onPress: () => editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar,idProduto),
+                onPress: () => {
+                    editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar,idProduto)
+                    navigation.goBack()
+                },
                 style: "accept"
             }
         ],
