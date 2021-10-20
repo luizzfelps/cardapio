@@ -3,16 +3,16 @@ import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} 
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
-import styles from "./style"
+import styles from "../Produtos/style"
 
 
 export default function Produtos({ navigation,route }){
     const [produtos, setProdutos] = useState([])
     let nomeCategoria = route.params.nome
-    const ref = database.collection('Produtos')
+    const ref = database.collection('Produtos').where("categoria", "==", nomeCategoria)
     useEffect(() =>{
         nomeCategoria = route.params.nome
-        ref.where("categoria", "==", nomeCategoria).onSnapshot((query)=>{
+        ref.where("disponivel", "==", true).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
@@ -26,7 +26,7 @@ export default function Produtos({ navigation,route }){
             <Text style={styles.title}>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={produtos}
+                data={produtos} 
                 renderItem={( { item } )=>{
                     return(
                     <View style={styles.Produtos}>

@@ -5,11 +5,10 @@ import { FontAwesome } from "@expo/vector-icons"
 import database from "../../config/firebaseconfig"
 import styles from "./style"
 
-
 export default function ProdutosAdmin({ navigation, route }){
     const [state, setState] = useState({})
     const [produtos, setProdutos] = useState([])
-    idCategoriaAdmin = route.params.id
+    idCategoriaAdm = route.params.idCategoria
     nomeCategoria = route.params.nome
     const ref = database.collection("Produtos")
 
@@ -30,7 +29,7 @@ export default function ProdutosAdmin({ navigation, route }){
     }, [])
     return(
         <View style={styles.container}>
-            <Text>{nomeCategoria}</Text>
+            <Text >{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={produtos}
@@ -59,8 +58,8 @@ export default function ProdutosAdmin({ navigation, route }){
                             valor: item.valor,
                             descricao: item.descricao,
                             disponivel: item.disponivel,
-                            categoria: categoria,
-                            idCategoriaAdmin,
+                            categoria: item.categoria,
+                            idCategoriaAdm,
                             nomeCategoria
                         })
                     }}
@@ -77,7 +76,7 @@ export default function ProdutosAdmin({ navigation, route }){
                 style={styles.newProduct}
                 onPress={() =>{
                     navigation.navigate("NovoProduto",{
-                        idCategoriaAdmin,
+                        idCategoriaAdm,
                         nomeCategoria
                     })
                 }}

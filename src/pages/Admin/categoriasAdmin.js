@@ -3,7 +3,7 @@ import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "r
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
-import styles from "./style"
+import styles from "../Categorias/style"
 
 
 export default function CategoriasAdmin({ navigation }){
@@ -21,6 +21,7 @@ export default function CategoriasAdmin({ navigation }){
     return(
         <View style={styles.container}>
             <FlatList
+                style={styles.lista}
                 showsVerticalScrollIndicator={false}
                 data={categorias}
                 renderItem={( { item } )=>{
@@ -30,7 +31,7 @@ export default function CategoriasAdmin({ navigation }){
                     style={styles.ProdutosDescricao}
                     onPress={()=>{
                         navigation.navigate("ProdutosAdmin",{
-                            id: item.id,
+                            idCategoria: item.id,
                             nome: item.nome
                         })
                     }}
