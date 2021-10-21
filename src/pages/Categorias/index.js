@@ -6,6 +6,8 @@ import database from "../../config/firebaseconfig"
 import styles from "./style"
 import {useCart} from '../../context/cart'
 
+const logo = require('../../../assets/logoVinland.png')
+
 export default function Categorias({ navigation }){
     const [categorias, setCategorias] = useState([])
 
@@ -21,8 +23,11 @@ export default function Categorias({ navigation }){
     
     return(
         <View style={styles.container}>
-           
-
+           <View style ={styles.header}>
+                <Image source= { logo } style={styles.headerLogo}/>
+                <Text style={styles.headerText}>VINLAND BAR</Text>
+            </View>
+            
             <Text style={styles.title}> Escolha a Categoria</Text>
             <FlatList style={styles.lista}
             showsVerticalScrollIndicator={false}

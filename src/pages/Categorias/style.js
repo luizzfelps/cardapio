@@ -9,6 +9,24 @@ const styles = StyleSheet.create({
         alignItems: 'flex-start',
         
     },
+    header:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: '100%',
+       
+    },
+    headerLogo:{
+        width: 40,
+        height: 40, 
+        borderRadius: 3
+    },
+    headerText:{
+        fontSize: 35,
+        fontWeight: '600',
+        color: '#44403C'
+    },
 
     title:{
         margin: 5,
