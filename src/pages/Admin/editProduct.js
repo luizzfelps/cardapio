@@ -14,7 +14,7 @@ export default function DetalhesEditar({ navigation, route }){
     const [isEnabledEditar, setIsEnabledEdit] = useState(route.params.disponivel);
     const toggleSwitch = () => setIsEnabledEdit(previousState => !previousState);
     const idProduto = route.params.id
-    idCategoriaAdmin = route.params.idCategoriaAdmin
+    idCategoriaAdmin = route.params.idCategoriaAdm
     nomeCategoria = route.params.nomeCategoria
     const ref = database.collection("Produtos")
 
@@ -26,26 +26,27 @@ export default function DetalhesEditar({ navigation, route }){
             disponivel: isEnabledEditar,
             categoria: categoriaEditar
         })
-        setState({});
-        navigation.navigate("ProdutosAdmin",{
-            id: idCategoriaAdmin,
-            nome: nomeCategoria
-        })
-        
+        return () => {
+            setState({});
+          };
+
     }
     
     const showAlert = () =>
         Alert.alert(
-        "Alert Title",
-        "My Alert Msg",
+        "Confirma as alterações?",
+        "",
         [
             {
-            text: "Cancel",
+            text: "Cancelar",
             style: "cancel",
             },
             {
-                text:"Accept",
-                onPress: () => editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar,idProduto),
+                text:"Aceitar",
+                onPress: () => {
+                    editarProdutos(nomeEditar, valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar,idProduto)
+                    navigation.goBack()
+                },
                 style: "accept"
             }
         ],

@@ -31,6 +31,9 @@ export default function Detalhes({navigation, route}){
             renderItem={({item, index}) =>{
                 return(
                     <View style={styles.Produtos}>
+                        <Text style={styles.ProdutosDescricao}>
+                            {item.nome}
+                        </Text>
                         <TouchableOpacity 
                         style={styles.excluirProduto}
                         onPress={() => remove(item)}>
@@ -43,16 +46,13 @@ export default function Detalhes({navigation, route}){
                         <Text style={styles.addProduto}>{item.qty}</Text>
                         <TouchableOpacity 
                          style={styles.addProduto}
-                        onPress={() => add(item)}>
+                        onPress={() => add(item)}> 
                             <FontAwesome
                             name="plus-square"
                             size={23}
                             color="#4682B4">
                             </FontAwesome>
                         </TouchableOpacity>
-                        <Text style={styles.ProdutosDescricao}>
-                            {item.nome},{item.qty * item.valor}
-                        </Text>
                         <Modal
                             animationType="slide"
                             transparent={true}
@@ -63,7 +63,10 @@ export default function Detalhes({navigation, route}){
                         >
                             <View style={styles.centeredView}>
                             <View style={styles.modalView}>
-                                <Text style={styles.modalText}>Revisando seu pedido!</Text>
+                                <Text style={styles.modalText}>
+                                    Revisando seu pedido! <br/>
+                                    O pedido será enviado para cozinha e ficará marcado na sua comanda, obrigado.
+                                </Text>
                                 <FlatList
                                     data={cart}
                                     renderItem={({item}) => <Text>{item.nome}, {item.qty}</Text>}

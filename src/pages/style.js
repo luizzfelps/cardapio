@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
         marginTop:5,
         alignItems: 'center',
         alignContent: 'center',
+        flexDirection:'row'
     },
     ProdutosDescricao:{
         width:"50%",
@@ -68,9 +69,7 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
         backgroundColor: '#FAF0E6',
-        
-        
-        
+
     },
     
     adm:{

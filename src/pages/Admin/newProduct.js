@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch, goBack} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
@@ -26,8 +26,10 @@ export default function newProduct({navigation, route}){
             disponivel: isEnabled,
             categoria: categoria
         })
-        setState({});
-        navigation.navigate("CategoriasAdmin")
+
+        return () => {
+            setState({});
+          };
     }
 
     return (
@@ -76,6 +78,7 @@ export default function newProduct({navigation, route}){
                 style={styles.buttonNewProduct}
                 onPress={()=>{
                     adicionarProduto(nome, valor, descricao, isEnabled, categoria)
+                    navigation.goBack()
                 }}
             >
                 <Text style={styles.iconButton}>Adicionar</Text>

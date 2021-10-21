@@ -29,7 +29,8 @@ export default function Categorias({ navigation }){
             </View>
             
             <Text style={styles.title}> Escolha a Categoria</Text>
-            <FlatList style={styles.lista}
+            <FlatList
+            style={styles.lista}
             showsVerticalScrollIndicator={false}
             data={categorias}
             renderItem={( { item } )=>{
