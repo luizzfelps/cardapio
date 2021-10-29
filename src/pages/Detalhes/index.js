@@ -4,7 +4,7 @@ import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Button,
 import styles from "./style"
 import {useCart} from '../../context/cart'
 
-
+const logo = require('../../../assets/logoVinland.png')
 
 export default function Detalhes({navigation, route}){
     const {add} = useCart()
@@ -17,23 +17,28 @@ export default function Detalhes({navigation, route}){
 
     return(
        <View style={styles.container}> 
-       
+               <View style ={styles.header}>
+                <Image source= { logo } style={styles.headerLogo}/>
+                <Text style={styles.headerText}>VINLAND BAR</Text>
+               </View>
         <View style={styles.details}>
         <Image
-            style={{ width: 150, height: 150, borderRadius: 8}}
+            style={{ width: 415, height: 300}}
             source={{
-               uri: imagem,
+               uri: imagem.uri,
             }}
            />
            <Text>{nome}</Text>
            <Text>{descricao}</Text>
            <Text>R$ {valor}</Text>
-           
-        </View>
            <Button 
+                style={styles.btn}
                 title="Adicionar ao Carrinho"
                 onPress={() => add(produto)}>
            </Button>
+           
+        </View>
+          
            
        </View>
     )

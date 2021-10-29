@@ -37,15 +37,12 @@ const styles = StyleSheet.create({
     },
     
     Produtos:{
-        
         padding: 5,
         marginTop: 5,
         alignItems: 'center',
         justifyContent: 'center',
         width:"100%",
         flexDirection:"row",
-     
-
     },
     ProdutosDescricao:{
         fontSize: 15,

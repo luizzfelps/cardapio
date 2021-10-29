@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch, goBack} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch, goBack,ScrollView, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
+
+import Constants from 'expo-constants';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import Axios from "axios";
 
 import database from "../../config/firebaseconfig"
 import styles from "./style"
@@ -12,29 +17,56 @@ export default function newProduct({navigation, route}){
     const [valor, setValor] = useState(null)
     const [descricao, setDescricao] = useState(null)
     const [categoria, setCategoria] = useState(null)
+    const [imagem, setImagem] = useState()
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
     idCategoriaAdmin = route.params.idCategoriaAdmin
     nomeCategoria = route.params.nomeCategoria
     const ref = database.collection("Produtos")
 
-    function adicionarProduto(nome, valor, descricao, isEnabled, categoria){
+    function adicionarProduto(nome, valor, descricao, isEnabled, categoria, imagem){
         ref.add({
             nome: nome,
             valor: valor,
             descricao: descricao,
             disponivel: isEnabled,
-            categoria: categoria
+            categoria: categoria,
+            imagem: imagem
         })
 
         return () => {
             setState({});
           };
     }
+    async function imagePickerCall(){
+        if (Constants.platform.ios){
+            const {status} = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
+            
+            if( status !== 'granted'){
+                alert("Nós precisamos dessa permissão.");
+                return;
+            }
+        }
+
+        const data = await ImagePicker.launchImageLibraryAsync({});
+
+        if (data.cancelled){
+            return;
+        }
+
+        if(!data.uri){
+            return;
+        }
+        setImagem(data);
+    }
+
 
     return (
         <View style={styles.container}>
-            <Text>Nome</Text>
+            
+            
+            
+            <Text style={styles.text}>Nome</Text>
                 <TextInput
                 style={styles.inputText}
                 placeholder="Ex: Macarrão a bolonhesa"
@@ -42,7 +74,7 @@ export default function newProduct({navigation, route}){
                 value={nome}
             >
             </TextInput>
-            <Text>Descrição</Text>
+            <Text style={styles.text}>Descrição</Text>
                 <TextInput
                 style={styles.inputText}
                 placeholder="Ex: Massa spaguetti com molho de tomate da casa e..."
@@ -50,15 +82,17 @@ export default function newProduct({navigation, route}){
                 value={descricao}
             >
             </TextInput>
-            <Text>Valor</Text>
+            <Text style={styles.text}>Valor</Text>
                 <TextInput
                 style={styles.inputText}
                 placeholder="Ex: 20"
                 onChangeText={setValor}
                 value={valor}
             >
+                
             </TextInput>
-            <Text>Categoria</Text>
+           
+            <Text style={styles.text}>Categoria</Text>
                 <TextInput
                 style={styles.inputText}
                 placeholder="Ex: Bebidas"
@@ -66,7 +100,21 @@ export default function newProduct({navigation, route}){
                 value={categoria}
             >
             </TextInput>
-            <Text>Disponível</Text>
+            
+            <Image
+                source={{
+                    uri: imagem
+                    ? imagem.uri
+                    :'https://www.pickwickoutpost.com/Content/commerce-icons/menu-item-placeholder.png'
+                }}
+                style={styles.prodImg}
+            />
+            <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
+                <Text style={styles.textImage}> Adicionar Imagem</Text>
+            </TouchableOpacity>
+            
+            
+            <Text style={styles.text}>Disponível</Text> 
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
                     thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -74,15 +122,19 @@ export default function newProduct({navigation, route}){
                     onValueChange={toggleSwitch}
                     value={isEnabled}
                 />
+               
+               
             <TouchableOpacity
                 style={styles.buttonNewProduct}
                 onPress={()=>{
-                    adicionarProduto(nome, valor, descricao, isEnabled, categoria)
+                    adicionarProduto(nome, valor, descricao, isEnabled, categoria, imagem)
                     navigation.goBack()
                 }}
             >
                 <Text style={styles.iconButton}>Adicionar</Text>
             </TouchableOpacity>
+            
+            
         </View>
     )
 }

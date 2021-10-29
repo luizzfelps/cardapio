@@ -3,7 +3,7 @@ import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "r
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
-import styles from "../Categorias/style"
+import styles from "./style"
 
 
 export default function CategoriasAdmin({ navigation }){
@@ -20,6 +20,7 @@ export default function CategoriasAdmin({ navigation }){
     }, [])
     return(
         <View style={styles.container}>
+            <Text style={styles.title}>ADICIONAR PRODUTOS</Text>
             <FlatList
                 style={styles.lista}
                 showsVerticalScrollIndicator={false}

@@ -4,7 +4,7 @@ import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
 import styles from "../Produtos/style"
-
+const logo = require('../../../assets/logoVinland.png')
 
 export default function Produtos({ navigation,route }){
     const [produtos, setProdutos] = useState([])
@@ -23,8 +23,12 @@ export default function Produtos({ navigation,route }){
 
     return(
         <View style={styles.container}>
+            <View style ={styles.header}>
+                <Image source= { logo } style={styles.headerLogo}/>
+                <Text style={styles.headerText}>VINLAND BAR</Text>
+            </View>
             <Text style={styles.title}>{nomeCategoria}</Text>
-            <FlatList
+            <FlatList 
                 showsVerticalScrollIndicator={false}
                 data={produtos} 
                 renderItem={( { item } )=>{
@@ -46,17 +50,18 @@ export default function Produtos({ navigation,route }){
                     }}
                         >
                     <View style={styles.prod}>
+                    <Image
+                        style={{ width: 150, height: 100, borderRadius: 10, margin: 5}}
+                        source={{
+                             uri: item.imagem.uri,
+                            }}
+                    />
                     <Text style={styles.texto}>{item.nome}</Text>
                     <Text></Text>
                     <Text></Text>
                     <Text style={styles.texto}>R$ {item.valor}</Text>
                     </View>
-                    <Image
-                        style={{ width: 85, height: 85, borderRadius: 5, margin: 5}}
-                        source={{
-                             uri: item.imagem,
-                            }}
-                    />
+                 
                     </TouchableOpacity>
                     
                     </View>
