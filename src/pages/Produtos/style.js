@@ -3,8 +3,8 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#ECF0F1",
-        alignItems: 'flex-start',
+        backgroundColor: "#fff",
+       
     },
     header:{
         flexDirection: 'row',
@@ -38,29 +38,24 @@ const styles = StyleSheet.create({
         
     },
     Produtos:{
-        padding: 5,
-        marginTop: 5,
+        
         
 
     },
     prod:{
-        alignItems: 'flex-start',
-        flexDirection: "column",
+        
+        
         
     },
     ProdutosDescricao:{
-        width: 180,
-        height: 210,
-        margin: 5,
-        alignContent:"center",
-        alignItems: 'center',
-        flexDirection: "row",
-        backgroundColor:"#fff",
-        padding:8,
-        paddingHorizontal:10,
-        borderRadius: 10,
-        color:"#282b2db5",
-        elevation: 5
+        height: 220,
+        width: 170,
+        marginHorizontal: 10,
+        marginBottom: 20,
+        marginTop: 50,
+        borderRadius: 15,
+        elevation: 13,
+        backgroundColor: '#ccc'
         
     },
     buttonDetalhes:{

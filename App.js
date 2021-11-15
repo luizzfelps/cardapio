@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -15,14 +16,28 @@ export default function App() {
   return (
     <CartProvider>
       <NavigationContainer>
-        <Tab.Navigator inactiveColor="rgba(255, 255, 255, 0.5)" activeColor="#fff">
+        
+        <Tab.Navigator 
+        
+        tabBarOptions={{
+          style:{
+          height: 55,
+          borderTopWidth: 0,
+          elevation: 0
+        },
+        showLabel: false,
+        activeTintColor: "#F9813A"
+
+        }}
+       //<NavigationContainer> inactiveColor="rgba(255, 255, 255, 0.5)" activeColor="#fff" 
+       >
 
           <Tab.Screen 
           name="Inicial" 
           component={HomeBar} 
           options=
           {{
-             headerShown: false, 
+             headerShown: false,
              tabBarIcon: ({ color })=>(
                <Icon name="home" color={color} size={26} />
              )
@@ -33,9 +48,20 @@ export default function App() {
           component={BuscarBar} 
           options=
           {{
-             headerShown: false, 
+            headerShown: false,
              tabBarIcon: ({ color })=>(
-               <Icon name="search" color={color} size={26} />
+               <View style={{height: 60, width: 60,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#fff',
+                borderColor: '#F9813A',
+                borderWidth: 2,
+                borderRadius: 30,
+                top: -25,
+                elevation: 5
+               }}> 
+                <Icon name="search" color={'#F9813A'} size={26} />
+               </View> 
              )
           }} 
           />
@@ -44,7 +70,7 @@ export default function App() {
           component={CartBar} 
           options=
           {{
-             headerShown: false, 
+            headerShown: false,
              tabBarIcon: ({ color })=>(
                <Icon name="shopping-cart" color={color} size={26} />
              )

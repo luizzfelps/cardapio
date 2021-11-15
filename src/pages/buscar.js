@@ -45,7 +45,7 @@ export default function Buscar({navigation}){
                         <Text
                         style={styles.ProdutosDescricao}
                         onPress={()=>{
-                            navigation.navigate("Produtos",{
+                            navigation.navigate("Detalhes",{
                                 id: item.id,
                                 nome: item.nome
                             })

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { createStackNavigator } from "@react-navigation/stack";
 import {TouchableOpacity} from "react-native";
 
@@ -21,6 +22,7 @@ const Stack = createStackNavigator();
 function HomeBar(navigation){
     return(
       <Stack.Navigator>
+        
         <Stack.Screen name="Home" component={Home} 
         options={{ 
           headerShown: false

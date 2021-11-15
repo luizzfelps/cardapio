@@ -64,7 +64,7 @@ export default function Home({ navigation }){
     */
     return(
             <View style={styles.containerHome}>
-                 <StatusBar backgroundColor = "#333" barStyle="default" />
+                 <StatusBar backgroundColor = "#fff" barStyle="dark-content" />
                     <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
                     <TouchableOpacity
                     style={styles.buttonsHome}
@@ -75,7 +75,20 @@ export default function Home({ navigation }){
                         color="#4682B4">
                         </FontAwesome>
                 </TouchableOpacity>
+                <Text
+                    style={{
+                   position: 'absolute',
+                   marginTop: 480,
+                    fontSize: 15,
+                    textAlign: 'center',
+                    color: "#fff",
+                    }}>
+                        AJUDAMOS VOCÊ A ENCONTRAR OS MELHORES E MAIS SABOROSOS ALIMENTOS 
+                </Text>
+               
                 <TouchableOpacity
+                activeOpacity = {0.8}
+                
                 style={styles.btnCardapio}
                     onPress={() => {navigation.navigate("Categorias")}}>
                     <Text style={styles.textHome}>Acessar o Cardapio  <Text></Text>
@@ -87,6 +100,7 @@ export default function Home({ navigation }){
                     </Text>
                      
                 </TouchableOpacity>
+              
                 
                
             </View>

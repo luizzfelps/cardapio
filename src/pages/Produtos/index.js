@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
-
 import database from "../../config/firebaseconfig"
 import styles from "../Produtos/style"
 const logo = require('../../../assets/logoVinland.png')
+
+
 
 export default function Produtos({ navigation,route }){
     const [produtos, setProdutos] = useState([])
@@ -30,23 +31,22 @@ export default function Produtos({ navigation,route }){
             <Text style={styles.title}>{nomeCategoria}</Text>
             <FlatList 
                 showsVerticalScrollIndicator={false}
-                data={produtos} 
+                numColumns={2}
+                data={produtos}
                 renderItem={( { item } )=>{
                     return(
                     <View style={styles.Produtos}>
-                    <TouchableOpacity style={styles.ProdutosDescricao}
+                    <TouchableOpacity
+                    style={styles.ProdutosDescricao}
                     onPress={()=>{
                         navigation.navigate("Detalhes",{
                             id: item.id,
                             nome: item.nome,
-                            imagem:item.imagem,
+                            imagem: item.imagem,
                             valor: item.valor,
                             descricao: item.descricao,
-                            imagem: item.imagem,
                             produtoBruto: item
-                            
                         })
-
                     }}
                         >
                     <View style={styles.prod}>
