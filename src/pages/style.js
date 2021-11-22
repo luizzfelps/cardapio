@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold'
   },
+  text:{
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    alignItems: 'center'
+  },
     container: {
         flex: 1,
         backgroundColor: "#fff",
@@ -70,6 +76,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9813A',
 
     },
+    btnCart:{
+      height: 60,
+      justifyContent: 'center',
+      alignItems: 'center',
+      borderRadius: 20,
+      padding: 10,
+      backgroundColor: '#F9813A',
+
+  },
     
     adm:{
         backgroundColor: "#fff",
@@ -107,14 +122,7 @@ const styles = StyleSheet.create({
         color:"#ffffff",
         fontSize:20
     },
-    excluirProduto:{
-        justifyContent:"center",
-        paddingLeft:15
-    },
-    addProduto:{
-        justifyContent:"center",
-        paddingLeft:15
-    },
+   
     input: {
       height: 40,
       margin: 12,
@@ -143,6 +151,35 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22
       },
+      cartCard:{
+        height:150,
+        elevation: 15,
+        borderRadius: 10,
+        backgroundColor: '#fff',
+        marginVertical: 10,
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
+      },
+      addBtn:{
+        width: 80,
+        height: 30,
+        backgroundColor: '#F9813A',
+        borderRadius: 30,
+        paddingHorizontal: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center'
+      },
+      excluirProduto:{
+        justifyContent:"center",
+        paddingLeft:15
+    },
+    addProduto:{
+        justifyContent:"center",
+        paddingLeft:15
+    },
       modalView: {
         margin: 20,
         backgroundColor: "#87CEFA",

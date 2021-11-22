@@ -115,7 +115,7 @@ export default function Categorias({ navigation, route }){
                                 imagem: item.imagem,
                                 valor: item.valor,
                                 descricao: item.descricao,
-                                produtoBruto: item.produtoBruto
+                                produtoBruto: item
                             })
                         }}
                         >
@@ -130,7 +130,7 @@ export default function Categorias({ navigation, route }){
                             </View>
                             <View style={{marginHorizontal: 20}}>
                                 <Text style={styles.texto}>{item.nome}</Text>
-                                <Text style={{fontSize: 14, color: 'ccc', marginTop: 2}}>{item.nome}</Text>
+                                <Text style={{fontSize: 14, color: '#ccc', marginTop: 2}}>{item.categoria}</Text>
                             </View>
                             <View style={{
                                 marginTop:10, 
@@ -189,7 +189,7 @@ export default function Categorias({ navigation, route }){
                 </View>
                 <TouchableOpacity onPress={cliqueOrdenar}>
                 <View style={styles.orderBtn}>
-                    <Icon name="tune" size={28} color={"#E5E7EB"} />
+                    <Icon name="tune" size={28} color={"#fff"} />
                 </View>
                 </TouchableOpacity>
             </View>
