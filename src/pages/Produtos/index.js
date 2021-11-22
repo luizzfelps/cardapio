@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import database from "../../config/firebaseconfig"
 import styles from "../Produtos/style"
 const logo = require('../../../assets/logoVinland.png')
@@ -50,17 +51,32 @@ export default function Produtos({ navigation,route }){
                     }}
                         >
                     <View style={styles.prod}>
-                    <Image
-                        style={{ width: 150, height: 100, borderRadius: 10, margin: 5}}
-                        source={{
-                             uri: item.imagem.uri,
-                            }}
-                    />
-                    <Text style={styles.texto}>{item.nome}</Text>
-                    <Text></Text>
-                    <Text></Text>
-                    <Text style={styles.texto}>R$ {item.valor}</Text>
-                    </View>
+                            <View style={{alignItems: 'center', top: -40}}>
+                                <Image
+                                    style={{ width: 120, height: 120, borderRadius: 40}}
+                                    source={{
+                                    uri: item.imagem.uri,
+                                    }}
+                                />
+                            </View>
+                            <View style={{marginHorizontal: 20}}>
+                                <Text style={styles.texto}>{item.nome}</Text>
+                                <Text style={{fontSize: 14, color: 'ccc', marginTop: 2}}>{item.nome}</Text>
+                            </View>
+                            <View style={{
+                                marginTop:10, 
+                                marginHorizontal:20, 
+                                flexDirection: 'row', 
+                                justifyContent: 'space-between'
+                                }}>
+                                <Text style={{fontSize: 18, fontWeight: 'bold'}}>R$ {item.valor}</Text>
+                                
+                                    <View style={styles.verDetalhes}> 
+                                    <Icon name = "description" size={20} color= '#fff' />
+                                    </View>
+                                
+                            </View>
+                        </View>
                  
                     </TouchableOpacity>
                     

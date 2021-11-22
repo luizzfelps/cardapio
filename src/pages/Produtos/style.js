@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native'
+const {width} = Dimensions.get("screen");
+const cardWidth = width/2 - 20
 
 const styles = StyleSheet.create({
     container: {
@@ -28,16 +30,18 @@ const styles = StyleSheet.create({
     },
     title:{
         fontWeight: 'bold',
+        paddingHorizontal: 5,
         margin: 5,
         fontSize: 25,
         color: '#000'
     },
     texto:{
-        color: '#000',
-        fontSize: 20,
-        
+        fontSize: 18,
+        fontWeight: 'bold'
     },
     Produtos:{
+        padding: 5,
+        marginTop: 5,
         
         
 
@@ -48,14 +52,16 @@ const styles = StyleSheet.create({
         
     },
     ProdutosDescricao:{
-        height: 220,
-        width: 170,
-        marginHorizontal: 10,
+        height: 230,
+        width: cardWidth,
+        marginHorizontal: 5,
         marginBottom: 20,
         marginTop: 50,
         borderRadius: 15,
         elevation: 13,
-        backgroundColor: '#ccc'
+        backgroundColor: '#fff',
+        
+        
         
     },
     buttonDetalhes:{
@@ -71,5 +77,13 @@ const styles = StyleSheet.create({
         color:"#ffffff",
         fontSize:20
     }, 
+    verDetalhes: {
+        height: 30,
+        width: 30,
+        borderRadius: 20,
+        backgroundColor: '#F9813A',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 export default styles;

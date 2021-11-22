@@ -63,29 +63,33 @@ export default function Home({ navigation }){
         
     */
     return(
+        <SafeAreaView style={{flex: 1}}>
             <View style={styles.containerHome}>
                  <StatusBar backgroundColor = "#fff" barStyle="dark-content" />
                     <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
+                <View style={{flex: 1,alignItems: 'center', margin:10, marginLeft: 350 }}>
                     <TouchableOpacity
                     style={styles.buttonsHome}
                     onPress={() => {navigation.navigate("CategoriasAdmin")}}>
                         <FontAwesome
                         name="user"
-                        size={23}
-                        color="#4682B4">
+                        size={28}
+                        color="#fff"
+                        textAlign= 'center'>
                         </FontAwesome>
-                </TouchableOpacity>
+                    </TouchableOpacity>
+                </View>
                 <Text
                     style={{
-                   position: 'absolute',
-                   marginTop: 480,
+                    position: 'absolute',
+                    marginTop: 500,
                     fontSize: 15,
                     textAlign: 'center',
                     color: "#fff",
                     }}>
-                        AJUDAMOS VOCÊ A ENCONTRAR OS MELHORES E MAIS SABOROSOS ALIMENTOS 
+                        AQUI VOCÊ ENCONTRA OS MELHORES E MAIS SABOROSOS ALIMENTOS!
                 </Text>
-               
+               <View style={{flex: 1, marginBottom: 60, justifyContent: 'flex-end'}}>
                 <TouchableOpacity
                 activeOpacity = {0.8}
                 
@@ -95,15 +99,17 @@ export default function Home({ navigation }){
                         <FontAwesome 
                         name="list"
                         size={23}
-                        color="#4682B4"
+                        color="#fff"
                         />
                     </Text>
                      
                 </TouchableOpacity>
+                </View>
               
                 
                
             </View>
+            </SafeAreaView>
              )
             }
   /*  return(

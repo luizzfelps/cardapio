@@ -1,19 +1,42 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image, ScrollView} from "react-native"
+import {Dimensions,SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image, ScrollView} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import database from "../../config/firebaseconfig"
 import styles from "./style"
 import {useCart} from '../../context/cart'
 import { TextInput } from "react-native-gesture-handler"
+const screenHeight = Dimensions.get('window').height -100
 
 
 const logo = require('../../../assets/logoVinland.png')
 
-export default function Categorias({ navigation }){
-    const [categorias, setCategorias] = useState([])
-    const [produtos, setProdutos] = useState([])
+export default function Categorias({ navigation, route }){
+    const {add} = useCart();
+    const [categorias, setCategorias] = useState([]);
+    const [produtos, setProdutos] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    const [list, setList] = useState(produtos);
+
+    /*useEffect(() =>{
+        if(searchText === ''){
+            setList(produtos);
+        } else {
+            setList(
+                produtos.filter(item =>{
+                    if(item.nome.indexOf(searchText) > -1){
+                        return true;
+                    } else {
+                        return false;
+                    }
+                })
+            );
+        }
+    }, [searchText]);*/
     
+    const cliqueOrdenar = () => {
+
+    };
 
     useEffect(() =>{
         database.collection("Categorias2").onSnapshot((query)=>{
@@ -34,7 +57,7 @@ export default function Categorias({ navigation }){
             setProdutos(list)
         })
     }, [])
-
+//lista de categorias
     const ListaCategorias = () => {
         return (
             <FlatList
@@ -70,12 +93,16 @@ export default function Categorias({ navigation }){
             />
         );
     }
+// lista de produtos
     const ListaProdutos = () =>{
         return (
-        <FlatList
+            
+        
+            <FlatList
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
                     data={produtos}
+                    ListFooterComponent={<View style={{height: 20}}/>}
                     renderItem={( { item } )=>{
                         return(
                         <View style={styles.Produtos}>
@@ -88,21 +115,36 @@ export default function Categorias({ navigation }){
                                 imagem: item.imagem,
                                 valor: item.valor,
                                 descricao: item.descricao,
-                                produtoBruto: item
+                                produtoBruto: item.produtoBruto
                             })
                         }}
                         >
                         <View style={styles.prod}>
-                        <Image
-                        style={{ width: 150, height: 100, borderRadius: 10, margin: 5}}
-                        source={{
-                            uri: item.imagem.uri,
-                            }}
-                        />
-                            <Text style={styles.texto}>{item.nome}</Text>
-                            <Text></Text>
-                            <Text></Text>
-                            <Text style={styles.texto}>R$ {item.valor}</Text>
+                            <View style={{alignItems: 'center', top: -40}}>
+                                <Image
+                                    style={{ width: 120, height: 120, borderRadius: 40}}
+                                    source={{
+                                    uri: item.imagem.uri,
+                                    }}
+                                />
+                            </View>
+                            <View style={{marginHorizontal: 20}}>
+                                <Text style={styles.texto}>{item.nome}</Text>
+                                <Text style={{fontSize: 14, color: 'ccc', marginTop: 2}}>{item.nome}</Text>
+                            </View>
+                            <View style={{
+                                marginTop:10, 
+                                marginHorizontal:20, 
+                                flexDirection: 'row', 
+                                justifyContent: 'space-between'
+                                }}>
+                                <Text style={{fontSize: 18, fontWeight: 'bold'}}>R$ {item.valor}</Text>
+                                
+                                    <View style={styles.verDetalhes}> 
+                                    <Icon name = "description" size={20} color= '#fff' />
+                                    </View>
+                                
+                            </View>
                         </View>
                            
                             
@@ -113,13 +155,14 @@ export default function Categorias({ navigation }){
                     }
                     }
                     />
+                    
         );
     }
 
     
     
     return(
-        
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={styles.container}>
            <View style ={styles.header}>
                 <Image source= { logo } style={styles.headerLogo}/>
@@ -137,23 +180,31 @@ export default function Categorias({ navigation }){
 
                 <View style={styles.inputContainer}>
                     <Icon name="search" size={28}/>
-                    <TextInput style={{flex: 1, fontSize: 18}} placeholder="Pesquise por comida"/>
+                    <TextInput style={{flex: 1, fontSize: 18}} 
+                    placeholder="Pesquise por comida"
+                    placeholderTextColor ='#888'
+                    value={searchText}
+                    onChangeText={(t) => setSearchText(t)}
+                    />
                 </View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={cliqueOrdenar}>
                 <View style={styles.orderBtn}>
                     <Icon name="tune" size={28} color={"#E5E7EB"} />
                 </View>
                 </TouchableOpacity>
             </View>
             <View>
+                
                 <ListaCategorias />
             </View>
-            <View>
+            <View style={{flex: 1}}>
             <ListaProdutos />
             </View>
             
-             
+            
     </View>
+    </SafeAreaView>
+    
     
 )
 }

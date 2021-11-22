@@ -9,14 +9,17 @@ const styles = StyleSheet.create({
   },
   buttonsHome: {
     margin: 5,
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 50,
+    height:40,
+    width: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
     elevation: 2,
-    backgroundColor: '#FAF0E6',
+    backgroundColor: '#F9813A',
   },
   textHome: {
     fontSize: 20,
-    color: '#4682B4',
+    color: '#fff',
     fontWeight: 'bold'
   },
     container: {
@@ -60,15 +63,11 @@ const styles = StyleSheet.create({
     },
   
     btnCardapio:{
-        position: 'relative',
-        marginTop: 550,
-        justifyContent: 'flex-end',
-        alignContent: 'flex-end',
-        alignItems: 'center',
+        height: 60,
+        justifyContent: 'center',  
         borderRadius: 20,
         padding: 10,
-        elevation: 2,
-        backgroundColor: '#FAF0E6',
+        backgroundColor: '#F9813A',
 
     },
     
@@ -130,9 +129,16 @@ const styles = StyleSheet.create({
       width: '100%',
       marginVertical: 20,
     },
-    
+//estilo carrinho    
+    cartHeader:{
+      paddingVertical: 20,
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginHorizontal: 20
+    },
       centeredView: {
         flex: 1,
+        backgroundColor: '#fff',
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22

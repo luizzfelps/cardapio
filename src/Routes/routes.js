@@ -39,7 +39,7 @@ function HomeBar(navigation){
         */
           }} />
 
-        <Stack.Screen name="CategoriasAdmin" component={CategoriasAdmin}/>
+        <Stack.Screen name="CategoriasAdmin"  component={CategoriasAdmin}/>
 
         <Stack.Screen name="ProdutosAdmin" component={ProdutosAdmin}/>
 
@@ -47,11 +47,11 @@ function HomeBar(navigation){
 
         <Stack.Screen name="NovoProduto" component={NovoProduto}/>
 
-        <Stack.Screen name="Categorias" component={Categorias}/>
+        <Stack.Screen name="Categorias" options={{headerShown: false}} component={Categorias}/>
 
         <Stack.Screen name="Produtos" component={Produtos}/>
 
-        <Stack.Screen name="Detalhes" component={Detalhes}/>
+        <Stack.Screen name="Detalhes" options={{headerShown: false}} component={Detalhes}/>
   
       </Stack.Navigator>
     )
@@ -62,7 +62,7 @@ export {HomeBar}
     return(
       <Stack.Navigator>
   
-       <Stack.Screen name="Carrinho" component={Carrinho} />
+       <Stack.Screen name="Carrinho" options={{headerShown: false}} component={Carrinho} />
   
       </Stack.Navigator>
     )

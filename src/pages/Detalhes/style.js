@@ -3,10 +3,16 @@ import {StyleSheet} from 'react-native'
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#fff",
        
     },
     header:{
+        paddingVertical: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 20
+    },
+
+    logo:{
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -24,38 +30,41 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         color: '#44403C'
     },
-    Produtos:{
-       
-        flexDirection:"row",
-        justifyContent:"space-between",
-        marginTop:5
-
-
+    
+    imagemProd:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 280,
+        
     },
     details:{
-        
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 5,
-        marginBottom: 5
-    },
+        paddingHorizontal: 20,
+        paddingTop: 40,
+        paddingBottom: 60,
+        backgroundColor: '#F9813A',
+        borderTopRightRadius: 40,
+        borderTopLeftRadius: 40,
 
-    ProdutosDescricao:{
-        width:"75%",
-        alignContent:"flex-start",
-        justifyContent:"center",
-        backgroundColor:"#f5f5f5cf",
-        padding:12,
-        paddingHorizontal:20,
-        borderRadius: 50,
-        marginBottom:5,
-        marginRight:15,
-        color:"#282b2db5"
-        
+    },
+    detailsText:{
+        marginTop: 20,
+        lineHeight: 22,
+        fontSize: 16,
+        color: '#fff'
+    },
+    priceText:{
+        marginTop: 20,
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#fff'
     },
     btn:{
-      
+    marginTop: 55,
+    height: 60,
+    borderRadius:30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff'
     },
     buttonDetalhes:{
         position:"absolute",
