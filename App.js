@@ -19,14 +19,14 @@ export default function App() {
         
         <Tab.Navigator 
         
-        tabBarOptions={{
+       screenOptions={{
           style:{
           height: 55,
           borderTopWidth: 0,
           elevation: 0
         },
-        showLabel: false,
-        activeTintColor: "#F9813A"
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "#F9813A"
 
         }}
        //<NavigationContainer> inactiveColor="rgba(255, 255, 255, 0.5)" activeColor="#fff" 

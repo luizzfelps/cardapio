@@ -15,27 +15,36 @@ export default function Categorias({ navigation, route }){
     const {add} = useCart();
     const [categorias, setCategorias] = useState([]);
     const [produtos, setProdutos] = useState([]);
-    const [searchText, setSearchText] = useState('');
-    const [list, setList] = useState(produtos);
+    const [originalProdutos, setOriginalProdutos] = useState([]);
+    
 
-    /*useEffect(() =>{
-        if(searchText === ''){
-            setList(produtos);
-        } else {
-            setList(
-                produtos.filter(item =>{
-                    if(item.nome.indexOf(searchText) > -1){
-                        return true;
-                    } else {
-                        return false;
-                    }
-                })
-            );
-        }
-    }, [searchText]);*/
+    
     
     const cliqueOrdenar = () => {
+        let newProdutos = [...produtos]
 
+        //metodo mais simples
+        newProdutos.sort((a, b) => (a.nome > b.nome)? 1 : (b.nome > a.nome)? -1 : 0);
+    
+        //Outro metodo 
+       /*newProdutos.sort((a , b) =>{
+            if(a.nome > b.nome) {
+                return 1;
+            } else{
+                if(b.nome > a.nome){
+                    return -1;
+                } else{
+                    return 0;
+                }
+            }
+        });*/
+        setProdutos(newProdutos);
+
+    };
+//pesquisa em cima de nomes e categorias
+    function searchText(t) {
+        let arr = JSON.parse(JSON.stringify(originalProdutos));
+        setProdutos(arr.filter((d) => d.nome.includes(t) || d.categoria.includes(t)));
     };
 
     useEffect(() =>{
@@ -54,7 +63,8 @@ export default function Categorias({ navigation, route }){
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
-            setProdutos(list)
+            setProdutos(list);
+            setOriginalProdutos(list);
         })
     }, [])
 //lista de categorias
@@ -96,8 +106,6 @@ export default function Categorias({ navigation, route }){
 // lista de produtos
     const ListaProdutos = () =>{
         return (
-            
-        
             <FlatList
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
@@ -183,8 +191,7 @@ export default function Categorias({ navigation, route }){
                     <TextInput style={{flex: 1, fontSize: 18}} 
                     placeholder="Pesquise por comida"
                     placeholderTextColor ='#888'
-                    value={searchText}
-                    onChangeText={(t) => setSearchText(t)}
+                    onChangeText={(t) => searchText(t)}
                     />
                 </View>
                 <TouchableOpacity onPress={cliqueOrdenar}>
