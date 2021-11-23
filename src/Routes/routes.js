@@ -14,6 +14,7 @@ import DetalhesEditar from "../pages/Admin/editProduct"
 import NovoProduto from "../pages/Admin/newProduct"
 import ProdutosAdmin from "../pages/Admin/produtosAdmin"
 import Buscar from "../pages/buscar"
+import Comanda from "../pages/comanda"
 
 
 
@@ -80,3 +81,15 @@ export {CartBar}
   }
 
   export {BuscarBar}
+
+  function ComandaBar(){
+    return(
+      <Stack.Navigator>
+  
+       <Stack.Screen name="Comanda" component={Comanda} />
+  
+      </Stack.Navigator>
+    )
+  }
+
+  export {ComandaBar}

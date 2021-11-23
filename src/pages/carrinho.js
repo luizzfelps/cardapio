@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome } from "@expo/vector-icons"
 import styles from "../pages/style"
 import {useCart} from '../context/cart'
+import database from "../config/firebaseconfig"
 
 
 export default function Detalhes({navigation, route}){
@@ -11,16 +12,16 @@ export default function Detalhes({navigation, route}){
     const {add, remove, cart, totalValue} = useCart()
     const itemsPrice = cart.reduce((a, c) => a + c.valor * c.qty, 0);
     const totalPrice = itemsPrice
-    // const ref = database.collection("Pedidos")
-    // const [pedido, setPedido] = useState({})
-    // function adicionarPedido(cpf, mesa, pago, produtos){
-    //     ref.doc(id).update({
-    //         nome: nomeEditar,
-    //         valor: valorEditar,
-    //         descricao: descricaoEditar,
-    //         disponivel: isEnabledEditar
-    //     })
-    // }
+    const refPedido = database.collection("Pedidos")
+    const [pedido, setPedido] = useState({})
+
+    function adicionarPedido(){
+        refPedido.add({
+            cart,
+            cpf: '123456789',
+            pago: false
+        })
+    } 
 
 
     return(
@@ -88,18 +89,20 @@ export default function Detalhes({navigation, route}){
                             <View style={styles.centeredView}>
                             <View style={styles.modalView}>
                                 <Text style={styles.modalText}>
-                                    Revisando seu pedido! <br/>
+                                    Confirma o pedido?
+                                </Text>
+                                <Text style={styles.modalText}>
                                     O pedido será enviado para cozinha e ficará marcado na sua comanda, obrigado.
                                 </Text>
-                                <FlatList
+                                {/* <FlatList
                                     data={cart}
                                     renderItem={({item}) => <Text>{item.nome}, {item.qty}</Text>}
-                                  />
+                                  /> */}
                                 <Pressable
                                 style={[styles.button, styles.buttonClose]}
-                                onPress={() => setModalVisible(!modalVisible)}
+                                onPress={() => {setModalVisible(!modalVisible), adicionarPedido()}}
                                 >
-                                <Text style={styles.textStyle}>Finalizar R${totalPrice}</Text>
+                                <Text style={styles.textStyle}>Confirmar</Text>
                                 </Pressable>
                             </View>
                             </View>
