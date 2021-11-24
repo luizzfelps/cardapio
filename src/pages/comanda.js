@@ -9,10 +9,11 @@ import styles from "./style"
 export default function Comanda({ navigation,route }){
     const [pedidosLista, setPedidosLista] = useState([])
     const [pedidos, setPedido] = useState([])
+    const [idPedidos, setIdPedidos] = useState([])
 
     refPedidos = database.collection("Pedidos")
 
-    refNaoPagos = refPedidos.where("pago", "==", "false")
+    refNaoPagos = refPedidos.where("pago", "==", false)
 
     useEffect(() =>{
         refNaoPagos.onSnapshot((query)=>{
@@ -25,36 +26,52 @@ export default function Comanda({ navigation,route }){
     }, [])
 
 
-// console.log(pedidosLista[0].cart[0].descricao);  
+ 
 
+    function pagamento(){
+        pedidosLista.map((itens)=>{
+            refPedidos.doc(itens.id).update({
+                pago: true
+            })
+        })
+    }    
 
     return(
-        <View style={styles.container}>
-            <FlatList
-                showsVerticalScrollIndicator={false}
-                data={pedidosLista} 
-                renderItem={( { item, index } )=>{
-                    return(
-                    <View style={styles.prod}>
-                        {item.cart.map((item, key) =>{
-                            
-                            return(
-                                <View>
-                                    <Text>{item.nome}</Text>
-                                    <Text>{item.qty}</Text>         
-                                </View>
-                            )
-                        })}
-                        {/* <Text>{item.cart[0].nome}</Text> */}
+        <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
+            <View style={styles.container}>
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={pedidosLista} 
+                    renderItem={( { item } )=>{
+                        return(
+                        <View style={styles.prod}>
+                            {item.cart.map((item) =>{
+                                return(
+                                    <View>
+                                        <Text>{item.nome}</Text>
+                                        <Text>{item.qty}</Text>      
+                                        <Text>{item.id}</Text>         
+    
+                                    </View>
+                                )
+                            })}
+                            {/* <Text>{item.cart[0].nome}</Text> */}
+                           
+                        </View>
+                        )
+                        
+                    }
+                    }
+                    />
+                     <View>
+                        <TouchableOpacity
+                            style={styles.btnCart}
+                            onPress={() => pagamento()}
+                        >
+                            <Text>Fechar Comanda</Text>
+                        </TouchableOpacity>
                     </View>
-                    )
-                }
-                }
-                />
-                {/* <TouchableOpacity
-                onPress={() => pagamento(item.id)}
-                >
-                </TouchableOpacity> */}
-        </View>
+            </View>
+        </SafeAreaView>
     )
 }
