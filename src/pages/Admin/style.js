@@ -146,6 +146,17 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 7
     },
+
+    btnCozinha:{
+        width: 255,
+        height: 60,
+        justifyContent: 'flex-end',  
+        borderRadius: 20,
+        padding: 10,
+        backgroundColor: '#F9813A',
+        alignItems: 'center',
+
+    },
     
 });
 export default styles;

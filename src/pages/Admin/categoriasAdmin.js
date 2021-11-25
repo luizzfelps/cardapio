@@ -39,13 +39,29 @@ export default function CategoriasAdmin({ navigation }){
                     >
                         {item.nome}
                     </Text> 
+                        
 
                     </View>
+                        
                     )
                 }
                 }
                 />
+                <View style={{flex: 1, marginBottom: 100, justifyContent: 'flex-end'}}>
+                <Text style={styles.title}>COZINHA E REGISTROS</Text>
 
+                <TouchableOpacity 
+                
+                style={styles.btnCozinha}
+                    onPress={() => {navigation.navigate("Cozinha")}}>
+                    
+                    <Text >Cozinha</Text>
+                     
+                </TouchableOpacity>
+                </View>
         </View>
+
+        
     )
+
 }

@@ -15,6 +15,7 @@ import NovoProduto from "../pages/Admin/newProduct"
 import ProdutosAdmin from "../pages/Admin/produtosAdmin"
 import Buscar from "../pages/buscar"
 import Comanda from "../pages/comanda"
+import Cozinha from "../pages/Admin/cozinha"
 
 
 
@@ -53,6 +54,8 @@ function HomeBar(navigation){
         <Stack.Screen name="Produtos" component={Produtos}/>
 
         <Stack.Screen name="Detalhes" options={{headerShown: false}} component={Detalhes}/>
+
+        <Stack.Screen name="Cozinha" component={Cozinha}/>
   
       </Stack.Navigator>
     )
@@ -91,5 +94,6 @@ export {CartBar}
       </Stack.Navigator>
     )
   }
+
 
   export {ComandaBar}
