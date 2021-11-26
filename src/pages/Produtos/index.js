@@ -25,7 +25,11 @@ export default function Produtos({ navigation,route }){
 
     return(
         <View style={styles.container}>
-            <View style ={styles.header}>
+            <View style={styles.header}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Produtos</Text>
+            </View>
+            <View style ={styles.logo}>
                 <Image source= { logo } style={styles.headerLogo}/>
                 <Text style={styles.headerText}>VINLAND BAR</Text>
             </View>

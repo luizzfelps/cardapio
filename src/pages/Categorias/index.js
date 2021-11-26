@@ -16,10 +16,7 @@ export default function Categorias({ navigation, route }){
     const [categorias, setCategorias] = useState([]);
     const [produtos, setProdutos] = useState([]);
     const [originalProdutos, setOriginalProdutos] = useState([]);
-    
 
-    
-    
     const cliqueOrdenar = () => {
         let newProdutos = [...produtos]
 

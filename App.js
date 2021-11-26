@@ -6,7 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CartProvider, { useCart } from './src/context/cart'
 import { FontAwesome } from "@expo/vector-icons"
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import {HomeBar, CartBar, BuscarBar, ComandaBar} from './src/Routes/routes'
+import {HomeBar, CartBar, BuscarBar, ComandaBar, CategoriasBar} from './src/Routes/routes'
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +40,17 @@ export default function App() {
              headerShown: false,
              tabBarIcon: ({ color })=>(
                <Icon name="home" color={color} size={26} />
+             )
+          }} 
+          />
+          <Tab.Screen 
+          name="Categorias" 
+          component={CategoriasBar} 
+          options=
+          {{
+             headerShown: false,
+             tabBarIcon: ({ color })=>(
+               <Icon name="list" color={color} size={26} />
              )
           }} 
           />

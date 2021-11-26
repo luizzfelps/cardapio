@@ -38,6 +38,9 @@ export default function Comanda({ navigation,route }){
 
     return(
         <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
+             <View style={styles.cartHeader}> 
+                <Text style={{fontSize: 20, fontWeight: 'bold'}}>Comanda</Text>
+            </View>
             <View style={styles.container}>
                 <FlatList
                     showsVerticalScrollIndicator={false}
@@ -47,11 +50,21 @@ export default function Comanda({ navigation,route }){
                         <View style={styles.prod}>
                             {item.cart.map((item) =>{
                                 return(
-                                    <View>
-                                        <Text>{item.nome}</Text>
-                                        <Text>{item.qty}</Text>      
-                                        <Text>{item.id}</Text>         
-    
+                                    <View style={styles.cartCard}>
+                                        <View style={{
+                                            height: 100,
+                                            marginLeft: 10,
+                                            justifyContent: 'center',
+                                            paddingVertical: 20,
+                                            flex: 1
+                                        }}>
+                                            <Text style={{fontWeight: 'bold',color: '#000', fontSize: 16}}>Nome do Produto: </Text>
+                                            <Text style={{color: '#000', fontSize: 16}}>{item.nome}</Text>
+                                            <Text style={{fontWeight: 'bold',color: '#000', fontSize: 16}}>Quantidade: </Text> 
+                                            <Text style={{color: '#000', fontSize: 16}}>{item.qty}</Text>      
+                                            <Text style={{fontWeight: 'bold',color: '#000', fontSize: 16}}>ID do pedido: </Text> 
+                                            <Text style={{color: '#000', fontSize: 16}}>{item.id}</Text>         
+                                        </View>
                                     </View>
                                 )
                             })}
@@ -62,16 +75,22 @@ export default function Comanda({ navigation,route }){
                         
                     }
                     }
-                    />
-                     <View>
+                    ListFooterComponentStyle={{paddingHorizontal: 20, marginTop: 20}}
+                    ListFooterComponent= {() =>(
+
+                    
+                    <View>
                         <TouchableOpacity
                             style={styles.btnCart}
                             onPress={() => pagamento()}
                         >
-                            <Text>Fechar Comanda</Text>
+                            <Text style = {styles.text}>Fechar Comanda</Text>
                         </TouchableOpacity>
                     </View>
+                    )}
+                    />
             </View>
+            
         </SafeAreaView>
     )
 }

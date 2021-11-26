@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-evenly',
   },
+
   buttonsHome: {
     margin: 5,
     borderRadius: 50,
@@ -182,7 +183,7 @@ const styles = StyleSheet.create({
     },
       modalView: {
         margin: 50,
-        backgroundColor: "#87CEFA",
+        backgroundColor: "#F9813A",
         borderRadius: 20,
         padding: 35,
         alignItems: "center",
@@ -193,7 +194,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5
+        elevation: 13
       },
       button: {
         borderRadius: 20,
@@ -204,16 +205,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#F194FF",
       },
       buttonClose: {
-        backgroundColor: "#2196F3",
+        backgroundColor: "#fff",
       },
       textStyle: {
-        color: "white",
+        color: "#F9813A",
         fontWeight: "bold",
         textAlign: "center"
       },
       modalText: {
         marginBottom: 15,
-        textAlign: "center"
+        textAlign: "center",
+        color: '#fff',
+        fontWeight: 'bold'
       } ,
       item: {
         padding: 10,

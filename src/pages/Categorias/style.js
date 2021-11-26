@@ -18,6 +18,12 @@ const styles = StyleSheet.create({
         width: '100%',
        
     },
+      header2:{
+        paddingVertical: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 20
+    },
     headerLogo:{
         marginTop: 7,
         width: 50,

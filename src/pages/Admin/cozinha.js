@@ -43,11 +43,13 @@ export default function CozinhaAdmin({ navigation }){
                                 paddingVertical: 20,
                                 flex: 1
                             }}>
+                                <TouchableOpacity>
                                 <Text style={{fontWeight: 'bold', color: '#000', fontSize: 16}}>
                                     
                                     {item.nome}
-                                    <TouchableOpacity>Status</TouchableOpacity>
+                                    Status
                                 </Text>
+                                </TouchableOpacity>
                             </View>
                             <View style={{marginRight: 20, alignItems: 'center'}}>
                             <Text style={{fontWeight: 'bold', fontSize: 18}}>{item.qty}</Text>
