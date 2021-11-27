@@ -97,6 +97,10 @@ export default function Buscar({navigation}){
         }
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+            <View style={styles.header2}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Pesquisa</Text>
+            </View>
         <View style={styles.container}>
            
             <View

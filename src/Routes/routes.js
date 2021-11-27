@@ -51,7 +51,7 @@ function HomeBar(navigation){
 
         <Stack.Screen name="Categorias" options={{headerShown: false}} component={Categorias}/>
 
-        <Stack.Screen name="Produtos" component={Produtos}/>
+        <Stack.Screen name="Produtos" options={{headerShown: false}} component={Produtos}/>
 
         <Stack.Screen name="Detalhes" options={{headerShown: false}} component={Detalhes}/>
 
@@ -71,13 +71,24 @@ export {HomeBar}
       </Stack.Navigator>
     )
   }
-export {CartBar}
+  export {CartBar}
+
+  function CategoriasBar(){
+    return(
+  <Stack.Navigator>
+
+    <Stack.Screen name ="Categorias" options ={{headerShown: false}} component={Categorias} />
+
+  </Stack.Navigator>
+  )
+  }
+export {CategoriasBar}
 
   function BuscarBar(){
     return(
       <Stack.Navigator>
   
-       <Stack.Screen name="Search" component={Buscar} />
+       <Stack.Screen name="Search" component={Buscar} options ={{headerShown: false}}/>
   
       </Stack.Navigator>
     )
@@ -89,7 +100,7 @@ export {CartBar}
     return(
       <Stack.Navigator>
   
-       <Stack.Screen name="Comanda" component={Comanda} />
+       <Stack.Screen name="Comanda" component={Comanda}  options ={{headerShown: false}}/>
   
       </Stack.Navigator>
     )

@@ -150,7 +150,8 @@ const styles = StyleSheet.create({
     btnCozinha:{
         width: 255,
         height: 60,
-        justifyContent: 'flex-end',  
+        margin: 5,
+        justifyContent: 'center',  
         borderRadius: 20,
         padding: 10,
         backgroundColor: '#F9813A',

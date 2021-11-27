@@ -9,6 +9,12 @@ const styles = StyleSheet.create({
        
     },
     header:{
+        paddingVertical: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 20
+    },
+    logo:{
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

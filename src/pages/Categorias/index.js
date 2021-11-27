@@ -22,6 +22,7 @@ export default function Categorias({ navigation, route }){
     
 
     
+
     const cliqueOrdenar = () => {
         let newProdutos = [...produtos]
 

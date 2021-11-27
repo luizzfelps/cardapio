@@ -55,7 +55,7 @@ export default function CategoriasAdmin({ navigation }){
                 style={styles.btnCozinha}
                     onPress={() => {navigation.navigate("Cozinha")}}>
                     
-                    <Text >Cozinha</Text>
+                    <Text style={{fontWeight:'bold', fontSize: 15, color: '#fff'}}>Cozinha</Text>
                      
                 </TouchableOpacity>
                 </View>
