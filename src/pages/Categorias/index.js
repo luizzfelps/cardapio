@@ -16,9 +16,11 @@ export default function Categorias({ navigation, route }){
     const [categorias, setCategorias] = useState([]);
     const [produtos, setProdutos] = useState([]);
     const [originalProdutos, setOriginalProdutos] = useState([]);
+    const [mesaCliente, setMesaCliente] = useState(route.params.mesaCliente)
+    const [cpfCliente, setCpfCliente] = useState(route.params.cpfCliente)
+    const [nomeCliente, setNomeCliente] = useState(route.params.nomeCliente)
     
 
-    
     
     const cliqueOrdenar = () => {
         let newProdutos = [...produtos]
@@ -67,6 +69,7 @@ export default function Categorias({ navigation, route }){
             setOriginalProdutos(list);
         })
     }, [])
+
 //lista de categorias
     const ListaCategorias = () => {
         return (
@@ -123,7 +126,10 @@ export default function Categorias({ navigation, route }){
                                 imagem: item.imagem,
                                 valor: item.valor,
                                 descricao: item.descricao,
-                                produtoBruto: item
+                                produtoBruto: item,
+                                cpfCliente: cpfCliente,
+                                mesaCliente: mesaCliente,
+                                nomeCliente: nomeCliente
                             })
                         }}
                         >

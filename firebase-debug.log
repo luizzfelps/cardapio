@@ -1,0 +1,21 @@
+[debug] [2021-11-24T01:54:09.045Z] ----------------------------------------------------------------------
+[debug] [2021-11-24T01:54:09.047Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\luizf\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-11-24T01:54:09.048Z] CLI Version:   9.23.0
+[debug] [2021-11-24T01:54:09.048Z] Platform:      win32
+[debug] [2021-11-24T01:54:09.048Z] Node Version:  v14.17.5
+[debug] [2021-11-24T01:54:09.049Z] Time:          Tue Nov 23 2021 22:54:09 GMT-0300 (Horário Padrão de Brasília)
+[debug] [2021-11-24T01:54:09.049Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-11-24T01:54:09.057Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-11-24T01:54:09.057Z] > authorizing via signed-in user (luizfelipebsilvaa@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  D:\TCC\cardapio
+

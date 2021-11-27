@@ -1,72 +1,88 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, Image, StatusBar} from "react-native"
-import {Input} from "react-native-elements"
 import { NavigationContainer } from "@react-navigation/native"
 import database from "../config/firebaseconfig"
 import styles from "./style.js"
-import CartProvider from "../context/cart"
-import Carrinho from "./carrinho"
-import Categorias from "./Categorias/index"
+import { TextInputMask } from "react-native-masked-text";
 import { TextInput } from "react-native-gesture-handler"
 import { FontAwesome } from "@expo/vector-icons"
 
 export default function Home({ navigation }){
-    const [text, onChangeText] = useState();
-    const [isVisible, setIsVisible] = useState(false)
-    const [cpf , setCpf] = useState()
-    const [mesa, setMesa] = useState()
-    const [errorCPF, setErrorCPF] = useState(null)
-    const [errorMesa, setErrorMesa] = useState(null)
-    const [error, setError] = useState(true)
+    const [isCardapioVisible, setIsCardapioVisible] = useState(false)
+    const [isAdminVisible, setIsAdminVisible] = useState (false)
+    const [cpfLista , setCpfLista] = useState({})
+    const [cpf , setCpf] = useState('')
+    const [nome, setNome] = useState('')
+    const [mesa, setMesa] = useState('')
+    const cpfRef = useRef(null)
+    const mesaRef = useRef(null)
 
-   /* function validarCPF()
-    {
-        setError(null)
+    useEffect(() =>{
+        database.collection("Clientes").onSnapshot((query)=>{
+            const list = []
+            query.forEach((doc)=>{
+                list.push({...doc.data(), id: doc.id})
+            })
+            setCpfLista(list)
+        })
 
-        if(cpf == null)
-        {
-            setError("Preencha seu cpf")
-            setErrorCPF(true)
-        }
-        if(cpf != null)
-        {
-            const cpfRegex = new RegExp("^[0-9]*$");
-            if(!cpfRegex.test(cpf))
-            {
-                setError("O campo CPF aceita somente números!")
-                setErrorCPF(true)
+    }, [])
 
+    function cadastraCliente() {
+        const unmaskedCPF = cpfRef?.current.getRawValue();
+        cpfLista.filter(function(list){
+            if(list.cpf === unmaskedCPF){
+                const idCPF = list.id
+                database.collection("Clientes").doc(list.id).update({
+                    nome: nome
+                })
+                return alert("Bem vindo de volta!")
             }
-            setErrorCPF(false)
-        }
-    }
-    function validarMesa()
-    {
-        setError(null)
-
-        if(mesa == null)
-        {
-            setError("Preencha com o número da mesa")
-            setErrorMesa(true)
-        }
-        if(mesa != null)
-        {
-            const mesaRegex = new RegExp("^[0-9]*$");
-            if(!mesaRegex.test(mesa))
-            {
-                setError("O campo mesa aceita somente números!")
-                setErrorMesa(true)
+            
+            else{
+                database.collection("Clientes").add({
+                cpf: cpfRef?.current.getRawValue(),
+                nome: nome
+            })
             }
-            setErrorMesa(false)
-        }
+        })
     }
-        
-    */
+    
+    function verificaCPF(){
+        const unmaskedCPF = cpfRef?.current.getRawValue();
+        const cpfIsValid = cpfRef?.current.isValid();
+        const aMesa = mesaRef?.current.getRawValue();
+        if(!unmaskedCPF){
+            return alert("Preenche o campo CPF")
+        }
+        else if(!cpfIsValid){
+            return alert("CPF inválido")
+        }
+        if(unmaskedCPF === '42068674882'){
+            setIsAdminVisible(true)
+            setIsCardapioVisible(true)
+        }
+        if(!nome){
+            return alert("Preencha o campo nome")
+        }
+        if(nome.length <= 3){
+           return  alert("O nome deve conter ao menos quatro caracteres")
+        }        
+        if(!aMesa){
+            return alert("Preencha o campo mesa")
+        }
+        cadastraCliente()
+        setIsCardapioVisible(true)
+    }
+
+
     return(
         <SafeAreaView style={{flex: 1}}>
             <View style={styles.containerHome}>
                  <StatusBar backgroundColor = "#fff" barStyle="dark-content" />
                     <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
+                {isAdminVisible === true ? 
+                (    
                 <View style={{flex: 1,alignItems: 'center', margin:10, marginLeft: 350 }}>
                     <TouchableOpacity
                     style={styles.buttonsHome}
@@ -79,6 +95,7 @@ export default function Home({ navigation }){
                         </FontAwesome>
                     </TouchableOpacity>
                 </View>
+                ) : null }
                 <Text
                     style={{
                     position: 'absolute',
@@ -89,12 +106,19 @@ export default function Home({ navigation }){
                     }}>
                         AQUI VOCÊ ENCONTRA OS MELHORES E MAIS SABOROSOS ALIMENTOS!
                 </Text>
+                {isCardapioVisible === true ? 
+                (
                <View style={{flex: 1, marginBottom: 60, justifyContent: 'flex-end'}}>
                 <TouchableOpacity
                 activeOpacity = {0.8}
                 
                 style={styles.btnCardapio}
-                    onPress={() => {navigation.navigate("Categorias")}}>
+                    onPress={() => {
+                        navigation.navigate("Categorias",{
+                            cpfCliente: cpf,
+                            mesaCliente: mesa,
+                            nomeCliente: nome
+                    })}}>
                     <Text style={styles.textHome}>Acessar o Cardapio  <Text></Text>
                         <FontAwesome 
                         name="list"
@@ -105,9 +129,60 @@ export default function Home({ navigation }){
                      
                 </TouchableOpacity>
                 </View>
-              
-                
-               
+                )
+                :
+                (
+                    <View style={{ flex: 1, marginBottom: 60, justifyContent: 'flex-end' }}>
+                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira seu CPF</Text>
+                            <TextInputMask
+                                fontSize={20}
+                                placeholder="999.999.999.99"
+                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                type={'cpf'}
+                                
+                                options={{
+                                     maskType:'BRL'
+                                }}
+                                value={cpf}
+                                onChangeText={ text => setCpf(text)}
+                                ref={cpfRef}
+                            />
+                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira seu Nome</Text>
+                            <TextInput
+                                fontSize={20}
+                                placeholder="Fulano de Tal"
+                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                value={nome}
+                                onChangeText={ text => setNome(text)}
+                            />
+                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira o número da mesa</Text>
+                            <TextInputMask
+                                keyboardType="numeric"
+                                fontSize={20}
+                                placeholder="99"
+                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                type={'custom'}
+                                options={{
+                                    mask: '99'
+                                }}
+                                value={mesa}
+                                onChangeText={ text => setMesa(text)}
+                                ref={mesaRef}
+
+                            />
+                            <TouchableOpacity
+                             activeOpacity = {0.8}
+                             style={{backgroundColor:'#F9813A', width:30, borderRadius:30, alignItems:'center'}}
+                             onPress={() => {verificaCPF()}}>
+                                     <FontAwesome 
+                                     name="check-circle"
+                                     size={30}
+                                     color="#fff"
+                                     />
+                            </TouchableOpacity>
+                    </View>
+               )
+               }
             </View>
             </SafeAreaView>
              )
