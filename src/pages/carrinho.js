@@ -4,12 +4,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome } from "@expo/vector-icons"
 import styles from "../pages/style"
 import {useCart} from '../context/cart'
+import {useDados} from '../context/dados'
 import database from "../config/firebaseconfig"
 
 
 export default function Detalhes({navigation, route}){
     const [modalVisible, setModalVisible] = useState(false);
-    const {add, remove, cart, totalValue} = useCart()
+    const {add, remove, cart, clearCart} = useCart()
+    const {cpfSessao, mesaSessao} = useDados()
+
     const itemsPrice = cart.reduce((a, c) => a + c.valor * c.qty, 0);
     const totalPrice = itemsPrice
     const refPedido = database.collection("Pedidos")
@@ -18,9 +21,14 @@ export default function Detalhes({navigation, route}){
     function adicionarPedido(){
         refPedido.add({
             cart,
-            cpf: '123456789',
-            pago: false
+            cpf: cpfSessao,
+            mesa: mesaSessao,
+            pago: false,
+            cozinha: true
         })
+        return () => {
+            setState({});
+          };
     } 
 
 
@@ -100,7 +108,7 @@ export default function Detalhes({navigation, route}){
                                   /> */}
                                 <Pressable
                                 style={[styles.button, styles.buttonClose]}
-                                onPress={() => {setModalVisible(!modalVisible), adicionarPedido()}}
+                                onPress={() => {setModalVisible(!modalVisible), adicionarPedido(), clearCart()}}
                                 >
                                 <Text style={styles.textStyle}>Confirmar</Text>
                                 </Pressable>

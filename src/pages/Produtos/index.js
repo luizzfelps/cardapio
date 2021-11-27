@@ -50,7 +50,8 @@ export default function Produtos({ navigation,route }){
                             imagem: item.imagem,
                             valor: item.valor,
                             descricao: item.descricao,
-                            produtoBruto: item
+                            produtoBruto: item,
+                            
                         })
                     }}
                         >

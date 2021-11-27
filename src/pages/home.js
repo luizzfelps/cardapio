@@ -6,8 +6,11 @@ import styles from "./style.js"
 import { TextInputMask } from "react-native-masked-text";
 import { TextInput } from "react-native-gesture-handler"
 import { FontAwesome } from "@expo/vector-icons"
+import {useDados} from '../context/dados'
+
 
 export default function Home({ navigation }){
+    const { salvarDados} = useDados()
     const [isCardapioVisible, setIsCardapioVisible] = useState(false)
     const [isAdminVisible, setIsAdminVisible] = useState (false)
     const [cpfLista , setCpfLista] = useState({})
@@ -36,7 +39,9 @@ export default function Home({ navigation }){
                 database.collection("Clientes").doc(list.id).update({
                     nome: nome
                 })
-                return alert("Bem vindo de volta!")
+                return () => {
+                    setState({});
+                  };
             }
             
             else{
@@ -44,6 +49,9 @@ export default function Home({ navigation }){
                 cpf: cpfRef?.current.getRawValue(),
                 nome: nome
             })
+            return () => {
+                setState({});
+              };
             }
         })
     }
@@ -73,6 +81,7 @@ export default function Home({ navigation }){
         }
         cadastraCliente()
         setIsCardapioVisible(true)
+        salvarDados(unmaskedCPF, aMesa)
     }
 
 
@@ -114,11 +123,7 @@ export default function Home({ navigation }){
                 
                 style={styles.btnCardapio}
                     onPress={() => {
-                        navigation.navigate("Categorias",{
-                            cpfCliente: cpf,
-                            mesaCliente: mesa,
-                            nomeCliente: nome
-                    })}}>
+                        navigation.navigate("Categorias")}}>
                     <Text style={styles.textHome}>Acessar o Cardapio  <Text></Text>
                         <FontAwesome 
                         name="list"
@@ -187,40 +192,7 @@ export default function Home({ navigation }){
             </SafeAreaView>
              )
             }
-  /*  return(
-        <SafeAreaView style={{flex: 1, backgroundColor: '#333'}}>
-           
-        <View style={styles.container}>
-        <StatusBar backgroundColor = "#333" barStyle="default" />
-            <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
-
-            <TouchableOpacity style={styles.btnAdm}
-            onPress={()=>{
-                navigation.navigate("CategoriasAdmin")
-            }}>
-                
-                <FontAwesome 
-                name="user"
-                size={40}
-                color="#fff"
-                />
-                
-            </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.btnCardapio} 
-            onPress={()=>{
-                navigation.navigate("Categorias")
-                activeOpacity= 0.7
-            }}
-            >
-            <FontAwesome 
-                name="list"
-                size={50}
-                color="#fff"
-            />
-                
-               
-            </TouchableOpacity>*/
+ 
            
 
    

@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
-
+import {useDados} from '../context/dados'
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 import database from "../config/firebaseconfig"
 import styles from "./style"
 
 
 export default function Comanda({ navigation,route }){
+    const {cpfSessao} = useDados()
     const [pedidosLista, setPedidosLista] = useState([])
     const [pedidos, setPedido] = useState([])
     const [idPedidos, setIdPedidos] = useState([])
-
-    refPedidos = database.collection("Pedidos")
-
-    refNaoPagos = refPedidos.where("pago", "==", false)
+    const refPedidos = database.collection("Pedidos")
+    const refPedidosNaoPagos = database.collection("Pedidos").where("cpf", "==", cpfSessao).where("pago", "==", false)
 
     useEffect(() =>{
-        refNaoPagos.onSnapshot((query)=>{
+        refPedidosNaoPagos.onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
@@ -33,6 +34,9 @@ export default function Comanda({ navigation,route }){
             refPedidos.doc(itens.id).update({
                 pago: true
             })
+            return () => {
+                setState({});
+              };
         })
     }    
 
@@ -50,7 +54,8 @@ export default function Comanda({ navigation,route }){
                         <View style={styles.prod}>
                             {item.cart.map((item) =>{
                                 return(
-                                    <View style={styles.cartCard}>
+                                    
+                                    <View style={styles.cartCard} key={uuidv4()}>
                                         <View style={{
                                             height: 100,
                                             marginLeft: 10,
@@ -68,8 +73,6 @@ export default function Comanda({ navigation,route }){
                                     </View>
                                 )
                             })}
-                            {/* <Text>{item.cart[0].nome}</Text> */}
-                           
                         </View>
                         )
                         

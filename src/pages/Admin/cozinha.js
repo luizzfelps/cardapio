@@ -4,6 +4,8 @@ import { FontAwesome } from "@expo/vector-icons"
 import styles from "../style"
 import { Button } from "react-native-elements/dist/buttons/Button"
 import database from "../../config/firebaseconfig"
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function CozinhaAdmin({ navigation }){
     const [pedidos, setPedidos] = useState([]);
@@ -34,7 +36,7 @@ export default function CozinhaAdmin({ navigation }){
                     <View style={styles.centeredView}>
                         {item.cart.map((item) =>{
                         return(
-                        <View style={styles.cartCard}>
+                        <View style={styles.cartCard} key={uuidv4()}>
                             <Image source={item.imagem} style={{height: 90, width: 90, borderRadius: 8}}/>
                             <View style={{
                                 height: 100,
