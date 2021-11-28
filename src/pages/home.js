@@ -35,15 +35,10 @@ export default function Home({ navigation }){
         const unmaskedCPF = cpfRef?.current.getRawValue();
         cpfLista.filter(function(list){
             if(list.cpf === unmaskedCPF){
-                const idCPF = list.id
-                database.collection("Clientes").doc(list.id).update({
-                    nome: nome
-                })
                 return () => {
                     setState({});
                   };
             }
-            
             else{
                 database.collection("Clientes").add({
                 cpf: cpfRef?.current.getRawValue(),

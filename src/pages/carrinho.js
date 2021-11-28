@@ -24,13 +24,13 @@ export default function Detalhes({navigation, route}){
             cpf: cpfSessao,
             mesa: mesaSessao,
             pago: false,
-            cozinha: true
+            cozinha: true,
+            valorTotalDoPedido: totalPrice
         })
         return () => {
             setState({});
           };
     } 
-
 
     return(
         <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
