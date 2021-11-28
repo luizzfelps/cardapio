@@ -16,9 +16,6 @@ export default function Categorias({ navigation, route }){
     const [categorias, setCategorias] = useState([]);
     const [produtos, setProdutos] = useState([]);
     const [originalProdutos, setOriginalProdutos] = useState([]);
-    const [mesaCliente, setMesaCliente] = useState(route.params.mesaCliente)
-    const [cpfCliente, setCpfCliente] = useState(route.params.cpfCliente)
-    const [nomeCliente, setNomeCliente] = useState(route.params.nomeCliente)
     
 
     
@@ -85,7 +82,7 @@ export default function Categorias({ navigation, route }){
                     <TouchableOpacity  activeOpacity={0.8}
                     onPress={()=>{
                         navigation.navigate("Produtos",{
-                            nome: item.nome,
+                            nome: item.nome
                             
                         })
                     }}>
@@ -127,10 +124,7 @@ export default function Categorias({ navigation, route }){
                                 imagem: item.imagem,
                                 valor: item.valor,
                                 descricao: item.descricao,
-                                produtoBruto: item,
-                                cpfCliente: cpfCliente,
-                                mesaCliente: mesaCliente,
-                                nomeCliente: nomeCliente
+                                produtoBruto: item
                             })
                         }}
                         >

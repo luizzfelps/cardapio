@@ -6,14 +6,19 @@ import styles from "./style.js"
 import { TextInputMask } from "react-native-masked-text";
 import { TextInput } from "react-native-gesture-handler"
 import { FontAwesome } from "@expo/vector-icons"
+import {useDados} from '../context/dados'
+
 
 export default function Home({ navigation }){
+    const { salvarDados} = useDados()
     const [isCardapioVisible, setIsCardapioVisible] = useState(false)
     const [isAdminVisible, setIsAdminVisible] = useState (false)
     const [cpfLista , setCpfLista] = useState({})
     const [cpf , setCpf] = useState('')
     const [nome, setNome] = useState('')
     const [mesa, setMesa] = useState('')
+    // const [cadastrar, setCadastrar] = useState(true)
+    // const [atualizar, setAtualizar] = useState(true)
     const cpfRef = useRef(null)
     const mesaRef = useRef(null)
 
@@ -28,25 +33,45 @@ export default function Home({ navigation }){
 
     }, [])
 
-    function cadastraCliente() {
+    function cadastraCliente(){
         const unmaskedCPF = cpfRef?.current.getRawValue();
-        cpfLista.filter(function(list){
-            if(list.cpf === unmaskedCPF){
-                const idCPF = list.id
-                database.collection("Clientes").doc(list.id).update({
-                    nome: nome
-                })
-                return alert("Bem vindo de volta!")
+        var cadastrar = true
+        var atualizar = true
+        for(let i = 0; i < cpfLista.length; i++){
+            if(cpfLista[i].cpf === unmaskedCPF){
+                cadastrar = false
             }
-            
-            else{
-                database.collection("Clientes").add({
+        }
+        if(cadastrar == true){
+            database.collection("Clientes").add({
                 cpf: cpfRef?.current.getRawValue(),
                 nome: nome
             })
-            }
-        })
+            return () => {
+                setState({});
+            };
+        } 
     }
+    
+    // function cadastraCliente() {
+    //     const unmaskedCPF = cpfRef?.current.getRawValue();
+    //     cpfLista.filter(function(list){
+    //         if(list.cpf === unmaskedCPF){
+    //             return () => {
+    //                 setState({});
+    //               };
+    //         }
+    //         else{
+    //             database.collection("Clientes").add({
+    //             cpf: cpfRef?.current.getRawValue(),
+    //             nome: nome
+    //         })
+    //         return () => {
+    //             setState({});
+    //           };
+    //         }
+    //     })
+    // }
     
     function verificaCPF(){
         const unmaskedCPF = cpfRef?.current.getRawValue();
@@ -73,6 +98,7 @@ export default function Home({ navigation }){
         }
         cadastraCliente()
         setIsCardapioVisible(true)
+        salvarDados(unmaskedCPF, aMesa)
     }
 
 
@@ -114,11 +140,7 @@ export default function Home({ navigation }){
                 
                 style={styles.btnCardapio}
                     onPress={() => {
-                        navigation.navigate("Categorias",{
-                            cpfCliente: cpf,
-                            mesaCliente: mesa,
-                            nomeCliente: nome
-                    })}}>
+                        navigation.navigate("Categorias")}}>
                     <Text style={styles.textHome}>Acessar o Cardapio  <Text></Text>
                         <FontAwesome 
                         name="list"
@@ -187,40 +209,7 @@ export default function Home({ navigation }){
             </SafeAreaView>
              )
             }
-  /*  return(
-        <SafeAreaView style={{flex: 1, backgroundColor: '#333'}}>
-           
-        <View style={styles.container}>
-        <StatusBar backgroundColor = "#333" barStyle="default" />
-            <Image source={require("../../assets/imgBackground.jpeg")} style={styles.img}/>
-
-            <TouchableOpacity style={styles.btnAdm}
-            onPress={()=>{
-                navigation.navigate("CategoriasAdmin")
-            }}>
-                
-                <FontAwesome 
-                name="user"
-                size={40}
-                color="#fff"
-                />
-                
-            </TouchableOpacity>
-            
-            <TouchableOpacity style={styles.btnCardapio} 
-            onPress={()=>{
-                navigation.navigate("Categorias")
-                activeOpacity= 0.7
-            }}
-            >
-            <FontAwesome 
-                name="list"
-                size={50}
-                color="#fff"
-            />
-                
-               
-            </TouchableOpacity>*/
+ 
            
 
    

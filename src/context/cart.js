@@ -22,6 +22,9 @@ export default function CartProvider({children}){
     //     setCart([...newCart])
     // }
     
+    function clearCart(){
+        setCart([])
+    }
     function add(item){
       const exist = cart.find((x) => x.id === item.id);
       if(exist){
@@ -57,7 +60,8 @@ export default function CartProvider({children}){
         add,
         cart,
         totalValue,
-        remove
+        remove,
+        clearCart
     }
     return (
         <CartContext.Provider value={store}>
@@ -74,13 +78,15 @@ export function useCart(){
         cart,
         add,
         totalValue,
-        remove
+        remove,
+        clearCart
     } = context
 
     return {
         cart,
         add,
         totalValue,
-        remove
+        remove,
+        clearCart
     }
 }
