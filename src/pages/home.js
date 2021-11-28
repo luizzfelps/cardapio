@@ -10,6 +10,8 @@ import {useDados} from '../context/dados'
 
 
 export default function Home({ navigation }){
+    const [state, setState] = useState({});
+    const [pedidos, setPedidos] = useState([]);
     const { salvarDados} = useDados()
     const [isCardapioVisible, setIsCardapioVisible] = useState(false)
     const [isAdminVisible, setIsAdminVisible] = useState (false)
@@ -17,8 +19,6 @@ export default function Home({ navigation }){
     const [cpf , setCpf] = useState('')
     const [nome, setNome] = useState('')
     const [mesa, setMesa] = useState('')
-    // const [cadastrar, setCadastrar] = useState(true)
-    // const [atualizar, setAtualizar] = useState(true)
     const cpfRef = useRef(null)
     const mesaRef = useRef(null)
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { View, Text, TouchableOpacity, Alert, TextInput, Switch, NavigationContainer, Image } from "react-native"
-
+import {Picker} from '@react-native-picker/picker'
 import database from "../../config/firebaseconfig"
 import styles from "./style"
 
@@ -16,11 +16,14 @@ export default function DetalhesEditar({ navigation, route }){
     const [descricaoEditar, setDescricaoEdit] = useState(route.params.descricao)
     const [categoriaEditar, setCategoriaEditar] = useState (route.params.categoria)
     const [isEnabledEditar, setIsEnabledEdit] = useState(route.params.disponivel);
+
     const toggleSwitch = () => setIsEnabledEdit(previousState => !previousState);
+
+
     const idProduto = route.params.id
-    idCategoriaAdmin = route.params.idCategoriaAdm
-    nomeCategoria = route.params.nomeCategoria
+
     const ref = database.collection("Produtos")
+    const refCategorias = database.collection("Categorias")
 
     function editarProdutos(imagem,nomeEditar,valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar, id){
         ref.doc(id).update({
@@ -79,9 +82,7 @@ export default function DetalhesEditar({ navigation, route }){
             }
         ],
     );
-    
 
-  
     return (
         <View style={styles.container}>
             
@@ -119,13 +120,25 @@ export default function DetalhesEditar({ navigation, route }){
                 value={valorEditar}
             >
             </TextInput>
-            <Text style={styles.text}>Categoria</Text>
+            {/* 
                 <TextInput
                 style={styles.inputText}
                 onChangeText={setCategoriaEditar}
                 value={categoriaEditar}
             >
-            </TextInput>
+            </TextInput> 
+            */}
+            <Text style={styles.text}>Categoria</Text>
+            <Picker
+                selectedValue={categoriaEditar}
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => setCategoriaEditar(itemValue)}
+            >
+                <Picker.Item label="Bebidas" value="Bebidas" />
+                <Picker.Item label="Lanches" value="Lanches" />
+                <Picker.Item label="Pratos" value="Pratos" />
+                <Picker.Item label="Porções" value="Porções" />
+            </Picker>
             <Text style={styles.text}>Disponível</Text>
                 <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}

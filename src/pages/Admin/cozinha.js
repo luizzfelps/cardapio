@@ -9,8 +9,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export default function CozinhaAdmin({ navigation }){
     const [pedidos, setPedidos] = useState([]);
-
-    refPedidos = database.collection("Pedidos").where("cozinha", "==", true)
+    const [state, setState] = useState({});
+    const refPedidos = database.collection("Pedidos").where("cozinha", "==", true)
 
     useEffect(() =>{
         refPedidos.onSnapshot((query)=>{
@@ -22,9 +22,31 @@ export default function CozinhaAdmin({ navigation }){
         })
     }, [])
 
+    // function marcaComoPronto(item){
+    //     // for(let i = 0; i < pedidos.length; i++){
+    //     //     database.collection("Pedidos").doc(pedidos[i].id).update({
+    //     //         cozinha: false
+    //     //     })
+    //     //     return () => {
+    //     //         setState({});
+    //     //       };
+    //     // }
+    // }
+
     
-
-
+    function marcaComoPronto(){
+     for (const id in pedidos) {
+         if (Object.hasOwnProperty.call(pedidos, id)) {
+             const element = pedidos[id];
+             database.collection("Pedidos").doc(pedidos[id].id).update({
+                 cozinha: false
+                })
+                return () => {
+                    setState({});
+                };
+            }
+        }
+    }
 
     return(
         <SafeAreaView style={{backgroundColor: '#fff', flex: 1}}>
@@ -47,15 +69,24 @@ export default function CozinhaAdmin({ navigation }){
                             }}>
                                 <TouchableOpacity>
                                 <Text style={{fontWeight: 'bold', color: '#000', fontSize: 16}}>
-                                    
                                     {item.nome}
-                                    Status
                                 </Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={{marginRight: 20, alignItems: 'center'}}>
                             <Text style={{fontWeight: 'bold', fontSize: 18}}>{item.qty}</Text>
                             </View>
+                        <TouchableOpacity
+                        activeOpacity = {0.8}
+                        style={{backgroundColor:'#F9813A', width:30, borderRadius:30, alignItems:'center'}}
+                        onPress={() => {marcaComoPronto()}}>
+                            <FontAwesome
+                            name="check-circle"
+                            size={28}
+                            color="#fff"
+                            textAlign= 'center'>
+                            </FontAwesome>
+                        </TouchableOpacity>
                         </View>
                             
                         )

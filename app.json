@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "cardapio",
-    "slug": "cardapio",
+    "name": "Cardapio",
+    "slug": "cardapiouni",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,6 +20,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package":"com.tccunifran.cardapioelt",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

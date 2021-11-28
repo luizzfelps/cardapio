@@ -9,6 +9,7 @@ import styles from "./style"
 
 
 export default function Comanda({ navigation,route }){
+    const [state, setState] = useState({});
     const {cpfSessao} = useDados()
     const [pedidosLista, setPedidosLista] = useState([])
     const refPedidos = database.collection("Pedidos")
