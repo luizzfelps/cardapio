@@ -17,6 +17,8 @@ export default function Home({ navigation }){
     const [cpf , setCpf] = useState('')
     const [nome, setNome] = useState('')
     const [mesa, setMesa] = useState('')
+    // const [cadastrar, setCadastrar] = useState(true)
+    // const [atualizar, setAtualizar] = useState(true)
     const cpfRef = useRef(null)
     const mesaRef = useRef(null)
 
@@ -31,25 +33,45 @@ export default function Home({ navigation }){
 
     }, [])
 
-    function cadastraCliente() {
+    function cadastraCliente(){
         const unmaskedCPF = cpfRef?.current.getRawValue();
-        cpfLista.filter(function(list){
-            if(list.cpf === unmaskedCPF){
-                return () => {
-                    setState({});
-                  };
+        var cadastrar = true
+        var atualizar = true
+        for(let i = 0; i < cpfLista.length; i++){
+            if(cpfLista[i].cpf === unmaskedCPF){
+                cadastrar = false
             }
-            else{
-                database.collection("Clientes").add({
+        }
+        if(cadastrar == true){
+            database.collection("Clientes").add({
                 cpf: cpfRef?.current.getRawValue(),
                 nome: nome
             })
             return () => {
                 setState({});
-              };
-            }
-        })
+            };
+        } 
     }
+    
+    // function cadastraCliente() {
+    //     const unmaskedCPF = cpfRef?.current.getRawValue();
+    //     cpfLista.filter(function(list){
+    //         if(list.cpf === unmaskedCPF){
+    //             return () => {
+    //                 setState({});
+    //               };
+    //         }
+    //         else{
+    //             database.collection("Clientes").add({
+    //             cpf: cpfRef?.current.getRawValue(),
+    //             nome: nome
+    //         })
+    //         return () => {
+    //             setState({});
+    //           };
+    //         }
+    //     })
+    // }
     
     function verificaCPF(){
         const unmaskedCPF = cpfRef?.current.getRawValue();

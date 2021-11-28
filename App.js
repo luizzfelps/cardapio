@@ -47,7 +47,7 @@ export default function App() {
             }} 
             />
             <Tab.Screen 
-            name="Categorias" 
+            name="Category" 
             component={CategoriasBar} 
             options=
             {{
