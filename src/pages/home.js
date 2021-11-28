@@ -132,12 +132,12 @@ export default function Home({ navigation }){
                 )
                 :
                 (
-                    <View style={{ flex: 1, marginBottom: 60, justifyContent: 'flex-end' }}>
+                    <View style={{ flex: 1, width: 350, marginTop: 200, marginBottom: 200,justifyContent: 'center', backgroundColor: '#F9813A', borderRadius: 8 }}>
                             <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira seu CPF</Text>
                             <TextInputMask
                                 fontSize={20}
                                 placeholder="999.999.999.99"
-                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                style={{backgroundColor:'#F0F8FF', height:35, width:200,justifyContent: 'center', textAlign:'center', borderRadius:5}}
                                 type={'cpf'}
                                 
                                 options={{
