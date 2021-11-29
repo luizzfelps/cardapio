@@ -38,6 +38,8 @@ const HomeBar = ({ navigation, route }) => {
         <Stack.Screen name="NovoProduto" component={NovoProduto}/>
 
         <Stack.Screen name="Categorias" options={{headerShown: false}} component={Categorias}/>
+        
+        <Stack.Screen name="Buscar" options={{headerShown: false}} component={Buscar}/>
 
         <Stack.Screen name="Produtos" options={{headerShown: false}} component={Produtos}/>
 
@@ -66,6 +68,7 @@ export {HomeBar}
   <Stack.Navigator>
 
     <Stack.Screen name ="Categorias" options ={{headerShown: false}} component={Categorias} />
+    <Stack.Screen name="Detalhes" options={{headerShown: false}} component={Detalhes}/>
 
   </Stack.Navigator>
   )
@@ -75,9 +78,10 @@ export {CategoriasBar}
   function BuscarBar(){
     return(
       <Stack.Navigator>
-  
-       <Stack.Screen name="Search" component={Buscar} options ={{headerShown: false}}/>
-  
+       
+        <Stack.Screen name="Search" component={Buscar} options ={{headerShown: false}}/>
+        <Stack.Screen name="Detalhes" options={{headerShown: false}} component={Detalhes}/>
+
       </Stack.Navigator>
     )
   }

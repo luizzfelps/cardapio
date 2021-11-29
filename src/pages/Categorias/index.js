@@ -197,7 +197,7 @@ export default function Categorias({ navigation, route }){
                 </View>
                 <TouchableOpacity onPress={cliqueOrdenar}>
                 <View style={styles.orderBtn}>
-                    <Icon name="tune" size={28} color={"#fff"} />
+                    <Icon name="tune" size={28} color="#fff" />
                 </View>
                 </TouchableOpacity>
             </View>

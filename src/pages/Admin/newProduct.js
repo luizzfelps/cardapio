@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch, goBack,ScrollView, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
+import {Picker} from '@react-native-picker/picker'
 
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -84,6 +85,7 @@ export default function newProduct({navigation, route}){
             </TextInput>
             <Text style={styles.text}>Valor</Text>
                 <TextInput
+                keyboardType={"numeric"}
                 style={styles.inputText}
                 placeholder="Ex: 20"
                 onChangeText={setValor}
@@ -92,14 +94,26 @@ export default function newProduct({navigation, route}){
                 
             </TextInput>
            
-            <Text style={styles.text}>Categoria</Text>
+            {/* <Text style={styles.text}>Categoria</Text>
                 <TextInput
                 style={styles.inputText}
                 placeholder="Ex: Bebidas"
                 onChangeText={setCategoria}
                 value={categoria}
             >
-            </TextInput>
+            </TextInput> */}
+
+            <Text style={styles.text}>Categoria</Text>
+            <Picker
+                selectedValue={categoria}
+                style={{ height: 50, width: 150 }}
+                onValueChange={(itemValue, itemIndex) => setCategoria(itemValue)}
+            >
+                <Picker.Item label="Bebidas" value="Bebidas" />
+                <Picker.Item label="Lanches" value="Lanches" />
+                <Picker.Item label="Pratos" value="Pratos" />
+                <Picker.Item label="Porções" value="Porções" />
+            </Picker>
             
             <Image
                 source={{

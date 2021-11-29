@@ -9,14 +9,13 @@ import database from "../config/firebaseconfig"
 
 
 export default function Detalhes({navigation, route}){
+    const [state, setState] = useState({});
     const [modalVisible, setModalVisible] = useState(false);
     const {add, remove, cart, clearCart} = useCart()
     const {cpfSessao, mesaSessao} = useDados()
-
     const itemsPrice = cart.reduce((a, c) => a + c.valor * c.qty, 0);
     const totalPrice = itemsPrice
     const refPedido = database.collection("Pedidos")
-    const [pedido, setPedido] = useState({})
 
     function adicionarPedido(){
         refPedido.add({

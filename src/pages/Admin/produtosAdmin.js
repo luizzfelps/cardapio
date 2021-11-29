@@ -6,7 +6,7 @@ import database from "../../config/firebaseconfig"
 import styles from "./style"
 
 export default function ProdutosAdmin({ navigation, route }){
-    const [state, setState] = useState({})
+    const [state, setState] = useState({});
     const [produtos, setProdutos] = useState([])
     idCategoriaAdm = route.params.idCategoria
     nomeCategoria = route.params.nome
@@ -14,7 +14,9 @@ export default function ProdutosAdmin({ navigation, route }){
 
     function excluirProduto(id){
         ref.doc(id).delete()
-        setState({});
+        return () => {
+            setState({});
+          };
     }
    
     useEffect(() =>{
