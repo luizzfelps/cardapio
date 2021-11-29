@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
+import Icon from 'react-native-vector-icons/MaterialIcons'
+
 
 import database from "../../config/firebaseconfig"
 import styles from "./style"
@@ -10,16 +12,24 @@ export default function CategoriasAdmin({ navigation }){
     const [categorias, setCategorias] = useState([])
 
     useEffect(() =>{
-        database.collection("Categorias2").onSnapshot((query)=>{
+        const unsubscribe = database.collection("Categorias2").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
             setCategorias(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
     return(
         <View style={styles.container}>
+            <View style={styles.header}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Categorias</Text>
+            </View>
             <Text style={styles.title}>ADICIONAR PRODUTOS</Text>
             <FlatList
                 style={styles.lista}

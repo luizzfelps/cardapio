@@ -50,23 +50,31 @@ export default function Categorias({ navigation, route }){
     };
 
     useEffect(() =>{
-        database.collection("Categorias2").onSnapshot((query)=>{
+        const unsubscribe = database.collection("Categorias2").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
             setCategorias(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
 
     useEffect(() =>{
-        database.collection("Produtos").onSnapshot((query)=>{
+        const unsubscribe = database.collection("Produtos").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
             setProdutos(list);
             setOriginalProdutos(list);
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
 

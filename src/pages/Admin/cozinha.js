@@ -15,12 +15,16 @@ export default function CozinhaAdmin({ navigation }){
     const listaMesas = []
 
     useEffect(() =>{
-        refPedidos.onSnapshot((query)=>{
+        const unsubscribe = refPedidos.onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
             })
             setPedidos(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
 
@@ -42,6 +46,7 @@ export default function CozinhaAdmin({ navigation }){
             cozinha: false
         })
         return () => {
+            unsubscribe();
             setState({});
         };
     }

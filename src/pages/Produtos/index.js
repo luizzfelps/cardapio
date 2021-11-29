@@ -14,12 +14,16 @@ export default function Produtos({ navigation,route }){
     const ref = database.collection('Produtos').where("categoria", "==", nomeCategoria)
     useEffect(() =>{
         nomeCategoria = route.params.nome
-        ref.where("disponivel", "==", true).onSnapshot((query)=>{
+       const unsubscribe = ref.where("disponivel", "==", true).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
             })
             setProdutos(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
 

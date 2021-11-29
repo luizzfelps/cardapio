@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Alert, ScrollView} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import database from "../../config/firebaseconfig"
 import styles from "./style"
@@ -21,17 +22,24 @@ export default function ProdutosAdmin({ navigation, route }){
    
     useEffect(() =>{
         nomeCategoria = route.params.nome
-        ref.where("categoria", "==", nomeCategoria).onSnapshot((query)=>{
+        const unsubscribe = ref.where("categoria", "==", nomeCategoria).onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
             })
             setProdutos(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
     return(
-        
         <View style={styles.container}>
+            <View style={styles.header}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Produtos</Text>
+            </View>
             <Text style={{marginLeft: 5,fontWeight: 'bold', fontSize: 23}}>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Touchable, TextInput, Switch, goBack,ScrollView, Image} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 import {Picker} from '@react-native-picker/picker'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -64,9 +65,11 @@ export default function newProduct({navigation, route}){
 
     return (
         <View style={styles.container}>
-            
-            
-            
+            <View style={styles.header}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Novo Produto</Text>
+            </View>
+
             <Text style={styles.text}>Nome</Text>
                 <TextInput
                 style={styles.inputText}

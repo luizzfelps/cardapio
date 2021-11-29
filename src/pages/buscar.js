@@ -18,13 +18,17 @@ export default function Buscar({navigation}){
         const [originalProdutos, setOriginalProdutos] = useState([]);
 
         useEffect(() =>{
-            database.collection("Produtos").onSnapshot((query)=>{
+           const unsubscribe = database.collection("Produtos").onSnapshot((query)=>{
                 const list = []
                 query.forEach((doc)=>{
                     list.push({...doc.data(), id: doc.id})
                 })
                 setProdutos(list);
                 setOriginalProdutos(list);
+                return () => {
+                    // Unmouting
+                    unsubscribe();
+                  };
             })
         }, [])
         //pesquisa em cima de nomes e categorias

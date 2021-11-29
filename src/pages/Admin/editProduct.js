@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Alert, TextInput, Switch, NavigationConta
 import {Picker} from '@react-native-picker/picker'
 import database from "../../config/firebaseconfig"
 import styles from "./style"
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
@@ -85,7 +86,10 @@ export default function DetalhesEditar({ navigation, route }){
 
     return (
         <View style={styles.container}>
-            
+            <View style={styles.header}> 
+                <Icon name = "arrow-back-ios" size={28} onPress={navigation.goBack}/>
+                <Text style={{fontSize:20, fontWeight: 'bold', color: '#000'}}>Editar Produtos</Text>
+            </View>
                 <Image 
                     source={{
                         uri: imagem

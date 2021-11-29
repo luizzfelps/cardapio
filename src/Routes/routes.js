@@ -29,13 +29,13 @@ const HomeBar = ({ navigation, route }) => {
         
         <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
 
-        <Stack.Screen name="CategoriasAdmin"  component={CategoriasAdmin}/>
+        <Stack.Screen name="CategoriasAdmin"  component={CategoriasAdmin} options={{ headerShown: false}}/>
 
-        <Stack.Screen name="ProdutosAdmin" component={ProdutosAdmin}/>
+        <Stack.Screen name="ProdutosAdmin" component={ProdutosAdmin} options={{ headerShown: false}}/>
 
-        <Stack.Screen name="DetalhesEditar" component={DetalhesEditar}/>
+        <Stack.Screen name="DetalhesEditar" component={DetalhesEditar} options={{ headerShown: false}}/>
 
-        <Stack.Screen name="NovoProduto" component={NovoProduto}/>
+        <Stack.Screen name="NovoProduto" component={NovoProduto} options={{ headerShown: false}}/>
 
         <Stack.Screen name="Categorias" options={{headerShown: false}} component={Categorias}/>
         

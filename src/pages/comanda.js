@@ -19,12 +19,16 @@ export default function Comanda({ navigation,route }){
     const refPedidosNaoPagos = database.collection("Pedidos").where("cpf", "==", cpfSessao).where("pago", "==", false)
 
     useEffect(() =>{
-        refPedidosNaoPagos.onSnapshot((query)=>{
+       const unsubscribe = refPedidosNaoPagos.onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id}) 
             })
             setPedidosLista(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
     }, [])
     useEffect(()=>{

@@ -23,12 +23,16 @@ export default function Home({ navigation }){
     const mesaRef = useRef(null)
 
     useEffect(() =>{
-        database.collection("Clientes").onSnapshot((query)=>{
+        const unsubscribe = database.collection("Clientes").onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})
             })
             setCpfLista(list)
+            return () => {
+                // Unmouting
+                unsubscribe();
+              };
         })
 
     }, [])

@@ -162,6 +162,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    header:{
+        paddingVertical: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: 20
+    },
     cardView:{
         height:150,
         elevation: 15,
