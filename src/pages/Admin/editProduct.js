@@ -115,6 +115,7 @@ export default function DetalhesEditar({ navigation, route }){
             </TextInput>
             <Text style={styles.text}>Valor</Text>
                 <TextInput
+                keyboardType={"numeric"}
                 style={styles.inputText}
                 onChangeText={setValorEdit}
                 value={valorEditar}

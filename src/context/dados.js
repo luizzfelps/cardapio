@@ -13,9 +13,6 @@ export default function DadosProvider({children}){
       setMesaSessao(mesaSessao)
       
     }
-    console.log(cpfSessao)
-    console.log(mesaSessao)
-
     const store = {
         salvarDados,
         cpfSessao,
