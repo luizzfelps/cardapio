@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         color: '#000'
     },
     texto:{
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold'
     },
     Produtos:{
