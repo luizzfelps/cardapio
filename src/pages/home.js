@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, Image, StatusBar} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, Image, StatusBar,KeyboardAvoidingView} from "react-native"
 import { NavigationContainer } from "@react-navigation/native"
 import database from "../config/firebaseconfig"
 import styles from "./style.js"
@@ -154,12 +154,14 @@ export default function Home({ navigation }){
                 )
                 :
                 (
-                    <View style={{ flex: 1, width: 350, marginTop: 200, marginBottom: 200,justifyContent: 'center', backgroundColor: '#F9813A', borderRadius: 8 }}>
-                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira seu CPF</Text>
+               
+                    <View style={{ flex: 1, padding: 25,width: 350, marginBottom: 35,marginTop: 30,justifyContent: 'center', backgroundColor: '#F9813A', borderRadius: 8}}>
+                    <Text style={{fontSize:28, fontWeight: 'bold',color: '#fff',marginTop: 10, marginBottom:5}}> Preencha seus Dados</Text>
+                            <Text style={{fontSize:25, fontWeight: 'bold',color: '#fff',marginTop: 10, marginBottom:5, textAlign:"center"}}>Insira seu CPF</Text>
                             <TextInputMask
                                 fontSize={20}
                                 placeholder="999.999.999.99"
-                                style={{backgroundColor:'#F0F8FF', height:35, width:200,justifyContent: 'center', textAlign:'center', borderRadius:5}}
+                                style={{backgroundColor:'#F0F8FF',height:40, width: '98%',justifyContent: 'center', textAlign:'left', borderRadius:5}}
                                 type={'cpf'}
                                 
                                 options={{
@@ -169,20 +171,20 @@ export default function Home({ navigation }){
                                 onChangeText={ text => setCpf(text)}
                                 ref={cpfRef}
                             />
-                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira seu Nome</Text>
+                            <Text style={{fontSize:25, fontWeight: 'bold',color: '#fff', marginBottom:5, textAlign:"center"}}>Insira seu Nome</Text>
                             <TextInput
                                 fontSize={20}
-                                placeholder="Fulano de Tal"
-                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                placeholder="Nome"
+                                style={{backgroundColor:'#F0F8FF',height:40, width:'98%', textAlign:'left', borderRadius:5}}
                                 value={nome}
                                 onChangeText={ text => setNome(text)}
                             />
-                            <Text style={{fontSize:25, marginBottom:5, textAlign:"center"}}>Insira o número da mesa</Text>
+                            <Text style={{fontSize:25,fontWeight: 'bold',color: '#fff', marginBottom:5, textAlign:"center"}}>Insira o número da mesa</Text>
                             <TextInputMask
                                 keyboardType="numeric"
                                 fontSize={20}
-                                placeholder="99"
-                                style={{backgroundColor:'#F0F8FF', height:35, width:200, textAlign:'center', borderRadius:5}}
+                                placeholder="ex: 99"
+                                style={{backgroundColor:'#F0F8FF',height: 40,width:'98%', textAlign:'left', borderRadius:5}}
                                 type={'custom'}
                                 options={{
                                     mask: '99'
@@ -192,19 +194,24 @@ export default function Home({ navigation }){
                                 ref={mesaRef}
 
                             />
+                            <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}> 
                             <TouchableOpacity
                              activeOpacity = {0.8}
-                             style={{backgroundColor:'#F9813A', width:30, borderRadius:30, alignItems:'center'}}
+                             style={{backgroundColor:'#F9813A',marginTop: 35, width:50, borderRadius:30, alignItems:'center'}}
                              onPress={() => {verificaCPF()}}>
                                      <FontAwesome 
                                      name="check-circle"
-                                     size={30}
+                                     size={50}
                                      color="#fff"
                                      />
                             </TouchableOpacity>
+                            </View>
+                        
                     </View>
+                    
                )
                }
+               
             </View>
             </SafeAreaView>
              )
