@@ -6,17 +6,20 @@ export default function DadosProvider({children}){
     const [dados, setDados] = useState([])
     const [cpfSessao, setCpfSessao] = useState()
     const [mesaSessao, setMesaSessao] = useState()
+    const [nomeSessao, setNomeSessao] = useState()
 
-    function salvarDados(cpfSessao, mesaSessao){
+    function salvarDados(cpfSessao, mesaSessao, nomeSessao){
      
       setCpfSessao(cpfSessao)
       setMesaSessao(mesaSessao)
+      setNomeSessao(nomeSessao)
       
     }
     const store = {
         salvarDados,
         cpfSessao,
-        mesaSessao
+        mesaSessao,
+        nomeSessao
     }
     return (
         <DadosContext.Provider value={store}>
@@ -32,12 +35,14 @@ export function useDados(){
     const {
         salvarDados,
         cpfSessao,
-        mesaSessao
+        mesaSessao,
+        nomeSessao
     } = context
 
     return {
         salvarDados,
         cpfSessao,
-        mesaSessao
+        mesaSessao,
+        nomeSessao
     }
 }

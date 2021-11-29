@@ -98,7 +98,7 @@ export default function Home({ navigation }){
         }
         cadastraCliente()
         setIsCardapioVisible(true)
-        salvarDados(unmaskedCPF, aMesa)
+        salvarDados(unmaskedCPF, aMesa, nome)
     }
 
 

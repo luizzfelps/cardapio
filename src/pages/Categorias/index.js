@@ -6,6 +6,7 @@ import database from "../../config/firebaseconfig"
 import styles from "./style"
 import {useCart} from '../../context/cart'
 import { TextInput } from "react-native-gesture-handler"
+import {useDados} from '../../context/dados'
 const screenHeight = Dimensions.get('window').height -100
 
 
@@ -16,6 +17,7 @@ export default function Categorias({ navigation, route }){
     const [categorias, setCategorias] = useState([]);
     const [produtos, setProdutos] = useState([]);
     const [originalProdutos, setOriginalProdutos] = useState([]);
+    const {nomeSessao} = useDados();
     
 
     
@@ -169,7 +171,6 @@ export default function Categorias({ navigation, route }){
     }
 
     
-    
     return(
         <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={styles.container}>
@@ -177,7 +178,7 @@ export default function Categorias({ navigation, route }){
                 <Image source= { logo } style={styles.headerLogo}/>
                 <Text style={styles.headerText}>VINLAND BAR</Text>
             </View>
-            <Text style={{fontSize: 28, fontWeight: 'bold', marginLeft: 5}}> Olá, fulano de tal</Text>
+            <Text style={{fontSize: 28, fontWeight: 'bold', marginLeft: 5}}> Olá, {nomeSessao}</Text>
             <Text style={styles.title}> O que voce Deseja hoje ?</Text>
 
             <View
