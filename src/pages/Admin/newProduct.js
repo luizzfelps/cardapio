@@ -130,8 +130,8 @@ export default function newProduct({navigation, route}){
             
             <Text style={styles.text}>Disponível</Text> 
                 <Switch
-                    trackColor={{ false: "#767577", true: "#81b0ff" }}
-                    thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    trackColor={{ false: "#767577", true: "#ffa773" }}
+                    thumbColor={isEnabled ? "#F9813A" : "#ff5f00"}
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={toggleSwitch}
                     value={isEnabled}

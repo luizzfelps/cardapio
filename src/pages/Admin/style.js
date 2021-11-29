@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     Produtos:{
+        flex: 1,
         /*width:"100%",
         flexDirection:"row",
         justifyContent:"space-between",
@@ -21,6 +22,8 @@ const styles = StyleSheet.create({
     },
     excluirProduto:{
         justifyContent:"center",
+        
+        
         
     },
     ProdutosDescricao:{
@@ -74,12 +77,13 @@ const styles = StyleSheet.create({
         fontWeight:"bold"
     },
     newProduct:{
+        flex: 1,
         width:60,
         height:60,
         position:"absolute",
         bottom:30,
-        left:20,
-        backgroundColor:"#f92e6a",
+        right:20,
+        backgroundColor:"#F9813A",
         borderRadius:50,
         justifyContent:"center",
         alignItems:"center"
@@ -91,7 +95,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         bottom:50,
         left:20,
-        backgroundColor:"#f92e6a",
+        backgroundColor:"#F9813A",
         borderRadius:50,
         justifyContent:"center",
         alignItems:"center"
@@ -129,7 +133,7 @@ const styles = StyleSheet.create({
         width: 150,
         height: 50,
         borderRadius: 3,
-        backgroundColor: '#f92e6a',
+        backgroundColor: '#F9813A',
         justifyContent: 'center',
         alignItems: 'center'
     },
@@ -158,6 +162,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
+    cardView:{
+        height:150,
+        elevation: 15,
+        borderRadius: 10,
+        backgroundColor: '#fff',
+        marginVertical: 10,
+        marginHorizontal: 20,
+        paddingHorizontal: 10,
+        flexDirection: 'row',
+        alignItems: 'center'
+    }
     
 });
 export default styles;
