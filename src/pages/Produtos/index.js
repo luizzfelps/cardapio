@@ -66,7 +66,7 @@ export default function Produtos({ navigation,route }){
                             </View>
                             <View style={{marginHorizontal: 20}}>
                                 <Text style={styles.texto}>{item.nome}</Text>
-                                <Text style={{fontSize: 14, color: 'ccc', marginTop: 2}}>{item.categoria}</Text>
+                                <Text style={{fontSize: 14, color: '#ccc', marginTop: 2}}>{item.categoria}</Text>
                             </View>
                             <View style={{
                                 marginTop:10, 
