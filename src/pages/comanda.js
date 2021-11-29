@@ -103,7 +103,7 @@ export default function Comanda({ navigation,route }){
                                             <Text style={{fontWeight: 'bold',color: '#000', fontSize: 16}}>Quantidade: </Text> 
                                             <Text style={{color: '#000', fontSize: 16}}>{item.qty}</Text>      
                                             <Text style={{fontWeight: 'bold',color: '#000', fontSize: 16}}>Valor do Pedido: </Text> 
-                                            <Text style={{color: '#000', fontSize: 16}}>{item.qty * item.valor}</Text>     
+                                            <Text style={{color: '#000', fontSize: 16}}>R$ {item.qty * item.valor}</Text>     
     
                                         </View>
                                     </View>

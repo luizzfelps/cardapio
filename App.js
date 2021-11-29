@@ -41,6 +41,7 @@ export default function App() {
             options=
             {{
               headerShown: false,
+              tabBarVisible: false,
               tabBarIcon: ({ color })=>(
                 <Icon name="home" color={color} size={26} />
               )

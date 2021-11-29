@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Alert} from "react-native"
+import {SafeAreaView, View, Text, TouchableOpacity, FlatList, Alert, ScrollView} from "react-native"
 import { FontAwesome } from "@expo/vector-icons"
 
 import database from "../../config/firebaseconfig"
@@ -28,14 +28,17 @@ export default function ProdutosAdmin({ navigation, route }){
         })
     }, [])
     return(
+        
         <View style={styles.container}>
-            <Text >{nomeCategoria}</Text>
+            <Text style={{marginLeft: 5,fontWeight: 'bold', fontSize: 23}}>{nomeCategoria}</Text>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={produtos}
                 renderItem={( { item } )=>{
                     return(
                     <View style={styles.Produtos}>
+                        <View style={styles.cardView}>
+                            
                         <TouchableOpacity
                             style={styles.excluirProduto}
                             onPress={() => {
@@ -45,12 +48,13 @@ export default function ProdutosAdmin({ navigation, route }){
                             <FontAwesome
                                 name="minus-square"
                                 size={23}
-                                color="#F92E6A"
+                                color="#F9813A"
                             >                            
                             </FontAwesome>                   
                         </TouchableOpacity>
+                        
                     <Text
-                    style={styles.ProdutosDescricao}
+                    style={{color:'#000',width:"98%", marginLeft: 10, fontWeight: 'bold', fontSize: 20}}
                     onPress={()=>{
                         navigation.navigate("DetalhesEditar",{
                             id: item.id,
@@ -65,7 +69,8 @@ export default function ProdutosAdmin({ navigation, route }){
                     }}
                     >
                         {item.nome}
-                    </Text> 
+                    </Text>
+                    </View>
 
                     </View>
                     )
