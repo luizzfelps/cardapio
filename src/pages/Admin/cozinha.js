@@ -10,7 +10,9 @@ import { v4 as uuidv4 } from 'uuid';
 export default function CozinhaAdmin({ navigation }){
     const [pedidos, setPedidos] = useState([]);
     const [state, setState] = useState({});
+    const [mesa, setMesa] = useState([]);
     const refPedidos = database.collection("Pedidos").where("cozinha", "==", true)
+    const listaMesas = []
 
     useEffect(() =>{
         refPedidos.onSnapshot((query)=>{
@@ -21,6 +23,7 @@ export default function CozinhaAdmin({ navigation }){
             setPedidos(list)
         })
     }, [])
+
 
     // function marcaComoPronto(item){
     //     // for(let i = 0; i < pedidos.length; i++){
@@ -34,18 +37,13 @@ export default function CozinhaAdmin({ navigation }){
     // }
 
     
-    function marcaComoPronto(){
-     for (const id in pedidos) {
-         if (Object.hasOwnProperty.call(pedidos, id)) {
-             const element = pedidos[id];
-             database.collection("Pedidos").doc(pedidos[id].id).update({
-                 cozinha: false
-                })
-                return () => {
-                    setState({});
-                };
-            }
-        }
+    function marcaComoPronto(idPedido){
+        database.collection("Pedidos").doc(idPedido).update({
+            cozinha: false
+        })
+        return () => {
+            setState({});
+        };
     }
 
     return(
@@ -56,10 +54,10 @@ export default function CozinhaAdmin({ navigation }){
             renderItem={({item, index}) =>{
                 return(
                     <View style={styles.centeredView}>
-                        {item.cart.map((item) =>{
+                        {item.cart.map((itens) =>{
                         return(
                         <View style={styles.cartCard} key={uuidv4()}>
-                            <Image source={item.imagem} style={{height: 90, width: 90, borderRadius: 8}}/>
+                            <Image source={itens.imagem} style={{height: 90, width: 90, borderRadius: 8}}/>
                             <View style={{
                                 height: 100,
                                 marginLeft: 10,
@@ -69,17 +67,20 @@ export default function CozinhaAdmin({ navigation }){
                             }}>
                                 <TouchableOpacity>
                                 <Text style={{fontWeight: 'bold', color: '#000', fontSize: 16}}>
-                                    {item.nome}
+                                    {itens.nome}
+                                </Text>
+                                <Text style={{fontWeight: 'bold', color: '#A9A9A9', fontSize: 16}}>
+                                    Mesa {item.mesa}
                                 </Text>
                                 </TouchableOpacity>
                             </View>
                             <View style={{marginRight: 20, alignItems: 'center'}}>
-                            <Text style={{fontWeight: 'bold', fontSize: 18}}>{item.qty}</Text>
+                            <Text style={{fontWeight: 'bold', fontSize: 18}}>{itens.qty}</Text>
                             </View>
                         <TouchableOpacity
                         activeOpacity = {0.8}
                         style={{backgroundColor:'#F9813A', width:30, borderRadius:30, alignItems:'center'}}
-                        onPress={() => {marcaComoPronto()}}>
+                        onPress={() => {marcaComoPronto(item.id)}}>
                             <FontAwesome
                             name="check-circle"
                             size={28}
