@@ -65,6 +65,7 @@ export default function ProdutosAdmin({ navigation, route }){
                             descricao: item.descricao,
                             disponivel: item.disponivel,
                             categoria: item.categoria,
+                            imagem: item.imagem,
                             idCategoriaAdm,
                             nomeCategoria
                         })

@@ -83,7 +83,7 @@ export default function Home({ navigation }){
         else if(!cpfIsValid){
             return alert("CPF inválido")
         }
-        if(unmaskedCPF === '42068674882' || unmaskedCPF=== '45081392804'){
+        if(unmaskedCPF === '42068674882' || unmaskedCPF === '45081392804' || unmaskedCPF === '43306570826'){
             setIsAdminVisible(true)
             setIsCardapioVisible(true)
         }

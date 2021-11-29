@@ -90,7 +90,7 @@ export default function DetalhesEditar({ navigation, route }){
                     source={{
                         uri: imagem
                         ? imagem.uri
-                        : 'https://www.pickwickoutpost.com/Content/commerce-icons/menu-item-placeholder.png'
+                        : imagem.uri
                     }}
                     style={styles.prodImg}
                 />
