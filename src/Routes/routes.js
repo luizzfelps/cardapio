@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 import { createStackNavigator } from "@react-navigation/stack";
 import {TouchableOpacity} from "react-native";
 
@@ -21,25 +22,12 @@ import Cozinha from "../pages/Admin/cozinha"
 
 const Stack = createStackNavigator();
 
-function HomeBar(navigation){
+const HomeBar = ({ navigation, route }) => {
+  
     return(
       <Stack.Navigator>
         
-        <Stack.Screen name="Home" component={Home} 
-        options={{ 
-          headerShown: false
-         /* title: 'Vinland Bar Cardapio',
-          headerRight: () => (
-            <TouchableOpacity style={{marginRight: 15}}
-            onPress={()=>{
-              navigation.navigate("CategoriasAdmin")
-          }}
-            >
-              <FontAwesome name="user" size={40} color="#000"/>
-            </TouchableOpacity>
-          )
-        */
-          }} />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
 
         <Stack.Screen name="CategoriasAdmin"  component={CategoriasAdmin}/>
 

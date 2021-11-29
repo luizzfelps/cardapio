@@ -177,7 +177,7 @@ export default function Categorias({ navigation, route }){
                 <Image source= { logo } style={styles.headerLogo}/>
                 <Text style={styles.headerText}>VINLAND BAR</Text>
             </View>
-            <Text style={{fontSize: 28, fontWeight: 'bold', marginLeft: 5}}> Olá</Text>
+            <Text style={{fontSize: 28, fontWeight: 'bold', marginLeft: 5}}> Olá, fulano de tal</Text>
             <Text style={styles.title}> O que voce Deseja hoje ?</Text>
 
             <View
