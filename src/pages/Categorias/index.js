@@ -139,7 +139,7 @@ export default function Categorias({ navigation, route }){
                                     }}
                                 />
                             </View>
-                            <View style={{marginHorizontal: 20}}>
+                            <View style={{marginHorizontal: 20, width: 150}}>
                                 <Text style={styles.texto}>{item.nome}</Text>
                                 <Text style={{fontSize: 14, color: '#ccc', marginTop: 2}}>{item.categoria}</Text>
                             </View>
@@ -149,7 +149,7 @@ export default function Categorias({ navigation, route }){
                                 flexDirection: 'row', 
                                 justifyContent: 'space-between'
                                 }}>
-                                <Text style={{fontSize: 18, fontWeight: 'bold'}}>R$ {item.valor}</Text>
+                                <Text style={{fontSize: 16, fontWeight: 'bold'}}>R$ {item.valor}</Text>
                                 
                                     <View style={styles.verDetalhes}> 
                                     <Icon name = "description" size={20} color= '#fff' />
