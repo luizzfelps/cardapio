@@ -27,7 +27,7 @@ export default function DetalhesEditar({ navigation, route }){
     const refCategorias = database.collection("Categorias")
 
     function editarProdutos(imagem,nomeEditar,valorEditar, descricaoEditar, isEnabledEditar, categoriaEditar, id){
-        ref.doc(id).update({
+       const unsubscribe = ref.doc(id).update({
             imagem: imagem,
             nome: nomeEditar,
             valor: valorEditar,
@@ -36,9 +36,9 @@ export default function DetalhesEditar({ navigation, route }){
             categoria: categoriaEditar
         })
         return () => {
+            unsubscribe();
             setState({});
           };
-
     }
     async function imagePickerCall(){
         if (Constants.platform.ios){

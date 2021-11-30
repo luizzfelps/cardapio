@@ -22,12 +22,10 @@ export default function newProduct({navigation, route}){
     const [imagem, setImagem] = useState()
     const [isEnabled, setIsEnabled] = useState(false);
     const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-    idCategoriaAdmin = route.params.idCategoriaAdmin
-    nomeCategoria = route.params.nomeCategoria
     const ref = database.collection("Produtos")
 
     function adicionarProduto(nome, valor, descricao, isEnabled, categoria, imagem){
-        ref.add({
+        const unsubscribe = ref.add({
             nome: nome,
             valor: valor,
             descricao: descricao,
@@ -35,8 +33,8 @@ export default function newProduct({navigation, route}){
             categoria: categoria,
             imagem: imagem
         })
-
         return () => {
+            unsubscribe();
             setState({});
           };
     }

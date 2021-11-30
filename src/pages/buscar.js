@@ -11,14 +11,17 @@ import database from "../config/firebaseconfig"
 import { FontAwesome } from "@expo/vector-icons"
 
 
+
 export default function Buscar({navigation}){
 
         const [buscaItem, setBuscaItem] = useState();
         const [produtos, setProdutos] = useState([]);
         const [originalProdutos, setOriginalProdutos] = useState([]);
+        const refProdutos = database.collection("Produtos").where("disponivel", "==", true)
+
 
         useEffect(() =>{
-           const unsubscribe = database.collection("Produtos").onSnapshot((query)=>{
+           const unsubscribe = refProdutos.onSnapshot((query)=>{
                 const list = []
                 query.forEach((doc)=>{
                     list.push({...doc.data(), id: doc.id})

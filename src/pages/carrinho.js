@@ -18,7 +18,7 @@ export default function Detalhes({navigation, route}){
     const refPedido = database.collection("Pedidos")
 
     function adicionarPedido(){
-        refPedido.add({
+       const unsubscribe = refPedido.add({
             cart,
             cpf: cpfSessao,
             mesa: mesaSessao,
@@ -27,6 +27,8 @@ export default function Detalhes({navigation, route}){
             valorTotalDoPedido: totalPrice
         })
         return () => {
+            // Unmouting
+            unsubscribe();
             setState({});
           };
     } 

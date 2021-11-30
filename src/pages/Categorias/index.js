@@ -20,7 +20,7 @@ export default function Categorias({ navigation, route }){
     const {nomeSessao} = useDados();
     
 
-    
+    const refProdutos = database.collection("Produtos").where("disponivel", "==", true)
 
     const cliqueOrdenar = () => {
         let newProdutos = [...produtos]
@@ -64,7 +64,7 @@ export default function Categorias({ navigation, route }){
     }, [])
 
     useEffect(() =>{
-        const unsubscribe = database.collection("Produtos").onSnapshot((query)=>{
+        const unsubscribe = refProdutos.onSnapshot((query)=>{
             const list = []
             query.forEach((doc)=>{
                 list.push({...doc.data(), id: doc.id})

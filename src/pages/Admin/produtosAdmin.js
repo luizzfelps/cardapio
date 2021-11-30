@@ -91,10 +91,7 @@ export default function ProdutosAdmin({ navigation, route }){
             <TouchableOpacity 
                 style={styles.newProduct}
                 onPress={() =>{
-                    navigation.navigate("NovoProduto",{
-                        idCategoriaAdm,
-                        nomeCategoria
-                    })
+                    navigation.navigate("NovoProduto")
                 }}
             >
                 <Text style={styles.iconButton}>+</Text>
