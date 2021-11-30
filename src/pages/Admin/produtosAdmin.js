@@ -29,7 +29,6 @@ export default function ProdutosAdmin({ navigation, route }){
             })
             setProdutos(list)
             return () => {
-                // Unmouting
                 unsubscribe();
               };
         })
